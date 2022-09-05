@@ -1,0 +1,22 @@
+
+
+public class People {
+
+    private String human(String name, int height){
+        return "Имя - " + name + ", рост - " + height;
+    }
+    public static void main(String[] args) {
+        String name1 = "Клеопатра";
+        int height1 = 152;
+        People people = new People();
+        System.out.println(people.human(name1, height1));
+
+        String name2 = "Пушкин";
+        int height2 = 167;
+        System.out.println(people.human(name2,height2));
+
+        String name3 = "Владимир";
+        int height3 = 189;
+        System.out.println(people.human(name3, height3));
+    }
+}
