@@ -1,0 +1,15 @@
+
+
+public class HelloWorld {
+    private String returnPlace(int x, int y){
+        return "Место x - " + x + ", место y - " + y;
+    }
+    public static void main(String[] args) {
+
+        HelloWorld helloWorld = new HelloWorld();
+
+        System.out.println(helloWorld.returnPlace(23, 11));
+        System.out.println(helloWorld.returnPlace(56, 89));
+        System.out.println(helloWorld.returnPlace(12, 13));
+    }
+}
