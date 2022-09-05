@@ -1,0 +1,17 @@
+
+
+public class People {
+
+    private void floors(int n){
+        if (n==1) System.out.println("Дом с " + n + " этажом");
+        else if (n==5 || n==23) System.out.println("Дом с " + n + " этажами");
+    }
+
+    public static void main(String[] args) {
+        int floor1 = 1;
+        int floor2 = 5;
+        int floor3 = 23;
+        People people = new People();
+        people.floors(floor2);
+    }
+}
