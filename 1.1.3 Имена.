@@ -1,0 +1,30 @@
+
+
+public class People {
+
+    private String surname;
+    private String name;
+    private String middleName;
+
+    private void person(){
+        if (middleName==null) System.out.println(name + " " + surname);
+        else if (surname != null && name != null) System.out.println(surname + " " + name +" " + middleName);
+        else System.out.println(name);
+    }
+
+    public static void main(String[] args) {
+        People people = new People();
+        //people.surname = "Маяковский";
+        //people.name = "Владимир";
+
+        //people.name = "Клеопатра";
+        
+        people.surname = "Пушкин";
+        people.name = "Александр ";
+        people.middleName = "Сергеевич";
+
+        people.person();
+
+
+    }
+}
