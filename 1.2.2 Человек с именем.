@@ -1,0 +1,41 @@
+
+
+public class People {
+
+    private String surname;
+    private String name;
+    private String middleName;
+
+    private int height;
+
+    private String human() {
+        return "и ростом - " + height;
+    }
+
+    private String person() {
+        if (middleName == null) return "Человек с именем " + name + " " + surname;
+        else if (surname != null && name != null) return "Человек с именем " + surname + " " + name + " " + middleName;
+        return "Человек с именем " + name;
+    }
+
+    public static void main(String[] args) {
+        People people = new People();
+
+        people.surname = "Маяковский";
+        people.name = "Владимир";
+        people.height = 189;
+
+        /*
+        people.surname = "Пушкин";
+        people.name = "Александр ";
+        people.middleName = "Сергеевич";
+        people.height = 167;
+         */
+
+        //people.name = "Клеопатра";
+        //people.height = 152;
+
+        System.out.println(people.person() + " " + people.human());
+
+    }
+}
