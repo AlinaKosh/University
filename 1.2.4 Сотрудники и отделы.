@@ -1,0 +1,22 @@
+public class Employee {
+
+    private String name1;
+    private String name2;
+    private String name3;
+    private String department;
+    private String warden;
+
+    public static void main(String[] args) {
+        Employee employee =  new Employee();
+        employee.name1 = "Петров";
+        employee.name2 = "Козлов";
+        employee.name3 = "Сидоров";
+        employee.warden = "Козлов";
+        employee.department = "IT";
+        System.out.println(employee.name1 + " работает в отделе " + employee.department +
+                " начальник которого " + employee.warden);
+        System.out.println(employee.name2 + " работает в отделе " + employee.department +
+                " начальник которого " + employee.warden);
+        System.out.println(employee.warden + " начальник отдела " + employee.department);
+    }
+}
