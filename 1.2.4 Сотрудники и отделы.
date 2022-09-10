@@ -1,5 +1,4 @@
 public class Employee {
-
     private String name1;
     private String name2;
     private String name3;
@@ -15,7 +14,7 @@ public class Employee {
         employee.department = "IT";
         System.out.println(employee.name1 + " работает в отделе " + employee.department +
                 " начальник которого " + employee.warden);
-        System.out.println(employee.name2 + " работает в отделе " + employee.department +
+        System.out.println(employee.name3 + " работает в отделе " + employee.department +
                 " начальник которого " + employee.warden);
         System.out.println(employee.warden + " начальник отдела " + employee.department);
     }
