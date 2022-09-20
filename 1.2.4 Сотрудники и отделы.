@@ -1,21 +1,33 @@
-public class Employee {
-    private String name1;
-    private String name2;
-    private String name3;
+import java.util.Scanner;
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        Human human1 = new Human("Петров", "IT", "Козлов");
+        Human human2 = new Human("Козлов","IT","Козлов");
+        Human human3 = new Human("Сидоров","IT", "Козлов");
+        System.out.println(human1);
+        System.out.println(human2);
+        System.out.println(human3);
+    }
+}
+
+
+//ДРУГОЙ КЛАСС
+public class Human {
+    private String name;
     private String department;
     private String warden;
 
-    public static void main(String[] args) {
-        Employee employee =  new Employee();
-        employee.name1 = "Петров";
-        employee.name2 = "Козлов";
-        employee.name3 = "Сидоров";
-        employee.warden = "Козлов";
-        employee.department = "IT";
-        System.out.println(employee.name1 + " работает в отделе " + employee.department +
-                " начальник которого " + employee.warden);
-        System.out.println(employee.name3 + " работает в отделе " + employee.department +
-                " начальник которого " + employee.warden);
-        System.out.println(employee.warden + " начальник отдела " + employee.department);
+    public Human(String name, String department, String warden) {
+        this.name = name;
+        this.department = department;
+        this.warden = warden;
+    }
+
+    @Override
+    public String toString() {
+        if (name.equals(warden)) return warden + " начальник отдела " + department;
+        return name + " работает в отделе " + department + " начальник которого " + warden;
     }
 }
