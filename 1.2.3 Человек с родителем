@@ -1,0 +1,38 @@
+//ДРУГОЙ КЛАСС
+public class Human {
+
+    public String name;
+    public String surname;
+    public String secondName;
+
+    public Human(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Human(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        if (secondName==null) return "Имя: " + name + ", Фамилия: " + surname;
+        return "Имя: " + name + ", Фамилия: " + surname + ", Отчество: " + secondName;
+    }
+}
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        
+        Human human1 = new Human("Иван", "Чудов");
+        Human human2 = new Human("Петр", "Чудов");
+        human2.secondName = human1.name + "ович";
+        Human human3 = new Human("Борис");
+        human3.surname = human2.surname;
+        human3.secondName = human2.name + "ович";
+        System.out.println(human1);
+        System.out.println(human2);
+        System.out.println(human3);
+    }
+}
