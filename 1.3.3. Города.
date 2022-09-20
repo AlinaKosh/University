@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main1 {
+
+    public static void main(String[] args) {
+       
+        Point point = new Point("D");
+        point.costOfTravel();
+    }
+}
+
+
+//ДРУГОЙ КЛАСС
+public class Point {
+    private String namePoint;
+
+    public Point(String namePoint) {
+        this.namePoint = namePoint;
+    }
+    public void costOfTravel(){
+        if (namePoint.equals("A")) System.out.println("Из города А можно добраться до В за 5 рублей." + "\n"+
+                "Из города А можно добраться до F за 1 рубль."+ "\n"+
+                "Из города А можно добраться до D за 6 рублей.");
+        else if (namePoint.equals("B")) System.out.println("Из города B можно добраться до A за 5 рублей." + "\n"+
+                "Из города B можно добраться до C за 3 рубля.");
+        else if (namePoint.equals("D")) System.out.println("Из города D можно добраться до C за 4 рубля." + "\n"+
+                "Из города D можно добраться до E за 2 рубля." + "\n"+
+                "Из города D можно добраться до A за 6 рублей.");
+        else if (namePoint.equals("E")) System.out.println("Из города E можно добраться до F за 2 рубля.");
+        else System.out.println("Из города F можно добраться до B за 1 рубль."+ "\n"+
+                    "Из города F можно добраться до E за 2 рубля.");
+    }
+}
