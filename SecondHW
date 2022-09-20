@@ -1,0 +1,38 @@
+//1)Посчитать общее кол-во нескольких букв в строке и вывести 2)Посчиать кол-во букв по отдельности и вывести 
+public class Main {
+
+
+    public static void main(String[] args) {
+        
+        //функция, которая ищет общее число букв
+        System.out.println(ArrayHelper.getCountChar(text,'w','h','l'));
+        //каждое по отдельности 
+        ArrayHelper.getCountChar1(text,'w','H','l');
+
+    }
+}
+
+//В ОТДЕЛЬНОМ КЛАССЕ
+public class ArrayHelper {
+    public static int getCountChar(String str, char... ch) {
+        int count = 0;
+        for (char i : str.toCharArray()) {
+            for (char j : ch) {
+                if (i == j) count += 1;
+            }
+        }
+        return count;
+    }
+
+    public static void getCountChar1(String str, char... ch) {
+        int count;
+        for (char c : ch) {
+            count = 0;
+            for (char j : str.toCharArray()) {
+                if (j == c) count += 1;
+            }
+            System.out.println(count);
+        }
+    }
+
+}
