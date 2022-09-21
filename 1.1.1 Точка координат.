@@ -1,15 +1,27 @@
+public class Point {
+    public int x;
+    public int y;
 
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
-public class HelloWorld {
-    private String returnPlace(int x, int y){
+    @Override
+    public String toString() {
         return "Место x - " + x + ", место y - " + y;
     }
+}
+
+import java.util.Scanner;
+
+public class Main1 {
+
     public static void main(String[] args) {
-
-        HelloWorld helloWorld = new HelloWorld();
-
-        System.out.println(helloWorld.returnPlace(23, 11));
-        System.out.println(helloWorld.returnPlace(56, 89));
-        System.out.println(helloWorld.returnPlace(12, 13));
+        1 = new Point(3,3);
+        Point point2 = new Point(3,3);
+        System.out.println(point1);
+        System.out.println(point2);
+        System.out.println(point1==point2);
     }
 }
