@@ -1,0 +1,29 @@
+public class Time {
+    private int second;
+
+    public Time(int second) {
+        this.second = second;
+    }
+
+    @Override
+    public String toString() {
+        if (second / 3600 > 0 && second < 86400) return "0" + second / 3600 + ":" + ((second / 60)-(second / 3600)*60)  + ":" + (second - 60*((second / 3600)*60 + (second / 60)-((second / 3600)*60)));
+        else if (second > 86400) return "0" + ((second - 86400) / 3600) + ":" + ((second / 60)-(second / 3600)*60) + ":" + (second - 60*((second / 3600)*60 + (second / 60)-((second / 3600)*60)));
+        return "00:00:" + second;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    Time time1 = new Time(10);
+        Time time2 = new Time(10000);
+        Time time3 = new Time(100000);
+        Time time4 = new Time(10632);
+        System.out.println(time1);
+        System.out.println(time2);
+        System.out.println(time3);
+        System.out.println(time4);
+    }
+}
