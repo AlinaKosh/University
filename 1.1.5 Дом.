@@ -1,17 +1,26 @@
+public class Home {
+    private int floors;
 
-
-public class People {
-
-    private void floors(int n){
-        if (n==1) System.out.println("Дом с " + n + " этажом");
-        else if (n==5 || n==23) System.out.println("Дом с " + n + " этажами");
+    public Home(int floors) {
+        this.floors = floors;
     }
 
+    @Override
+    public String toString() {
+        if (floors==1) return "Дом с " + floors + " этажом";
+        return "Дом с " + floors + " этажами";
+    }
+}
+
+
+public class Main1 {
+
     public static void main(String[] args) {
-        int floor1 = 1;
-        int floor2 = 5;
-        int floor3 = 23;
-        People people = new People();
-        people.floors(floor2);
+    Home home1 = new Home(1);
+        Home home2 = new Home(5);
+        Home home3 = new Home(23);
+        System.out.println(home1);
+        System.out.println(home2);
+        System.out.println(home3);
     }
 }
