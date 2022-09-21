@@ -1,22 +1,30 @@
-
-
 public class People {
+    private String name;
+    private int height;
 
-    private String human(String name, int height){
-        return "Имя - " + name + ", рост - " + height;
+    public People(String name, int height) {
+        this.name = name;
+        this.height = height;
     }
+
+    @Override
+    public String toString() {
+        return name + ", рост: " + height;
+    }
+}
+
+
+import java.util.Scanner;
+
+public class Main1 {
+
     public static void main(String[] args) {
-        String name1 = "Клеопатра";
-        int height1 = 152;
-        People people = new People();
-        System.out.println(people.human(name1, height1));
 
-        String name2 = "Пушкин";
-        int height2 = 167;
-        System.out.println(people.human(name2,height2));
-
-        String name3 = "Владимир";
-        int height3 = 189;
-        System.out.println(people.human(name3, height3));
+        People people1 = new People("Клеопатра",152);
+        People people2 = new People("Пушкин",167);
+        People people3 = new People("Владимир", 189);
+        System.out.println(people1);
+        System.out.println(people2);
+        System.out.println(people3);
     }
 }
