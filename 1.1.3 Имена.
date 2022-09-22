@@ -1,30 +1,42 @@
+public class Human {
+    public String name;
+    public String surname;
+    public String secondName;
 
-
-public class People {
-
-    private String surname;
-    private String name;
-    private String middleName;
-
-    private void person(){
-        if (middleName==null) System.out.println(name + " " + surname);
-        else if (surname != null && name != null) System.out.println(surname + " " + name +" " + middleName);
-        else System.out.println(name);
+    @Override
+    public String toString() {
+        String res = "";
+        if (name!=null) return res + (name + " ");
+        if (surname!=null) return res + (surname + " ");
+        if (secondName!=null) return res + (secondName + " ");
+        return res;
     }
 
+    public String person(){
+        if (secondName==null) return name + " " + surname;
+        else if (surname != null && name != null) return surname + " " + name +" " + secondName;
+        else if (name==null && surname==null) return secondName;
+        return name;
+    }
+}
+
+
+public class Main1 {
+
     public static void main(String[] args) {
-        People people = new People();
-        //people.surname = "Маяковский";
-        //people.name = "Владимир";
 
-        //people.name = "Клеопатра";
-        
-        people.surname = "Пушкин";
-        people.name = "Александр ";
-        people.middleName = "Сергеевич";
+        Human human1 = new Human();
+        Human human2 = new Human();
+        Human human3 = new Human();
+        human1.name = "Alina";
+        human1.surname = "Kosh";
+        human1.secondName = "Den";
+        human2.name = "Mary";
+        human2.surname = "Frisky";
+        human3.secondName = "Renatov";
 
-        people.person();
-
-
+        System.out.println(human1.person());
+        System.out.println(human2.person());
+        System.out.println(human3.person());
     }
 }
