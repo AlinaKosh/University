@@ -1,41 +1,78 @@
+public class Human {
+    public String name;
+    public String surname;
+    public String secondName;
+
+    @Override
+    public String toString() {
+        String res = "";
+        if (name!=null)  res += (name + " ");
+        if (surname!=null) res += (surname + " ");
+        if (secondName!=null) res += (secondName + " ");
+        return res;
+    }
+
+}
 
 
 public class People {
+    public String name;
+    public int height;
 
-    private String surname;
-    private String name;
-    private String middleName;
-
-    private int height;
-
-    private String human() {
-        return "и ростом - " + height;
+    public People(Human name, int height) {
+        this.name = String.valueOf(name);
+        this.height = height;
     }
 
-    private String person() {
-        if (middleName == null) return "Человек с именем " + name + " " + surname;
-        else if (surname != null && name != null) return "Человек с именем " + surname + " " + name + " " + middleName;
-        return "Человек с именем " + name;
+    @Override
+    public String toString() {
+        return name + ", рост: " + height;
     }
+}
+
+
+public class AManWithAName {
+    public People people;
+
+    public AManWithAName(People people) {
+        this.people = people;
+    }
+
+    @Override
+    public String toString() {
+        return people + "";
+    }
+}
+
+
+public class Main1 {
 
     public static void main(String[] args) {
-        People people = new People();
+    
+    Human human1 = new Human();
+        Human human2 = new Human();
+        Human human3 = new Human();
 
-        people.surname = "Маяковский";
-        people.name = "Владимир";
-        people.height = 189;
+        human1.name = "Клеопатра";
 
-        /*
-        people.surname = "Пушкин";
-        people.name = "Александр ";
-        people.middleName = "Сергеевич";
-        people.height = 167;
-         */
+        human2.name = "Александр";
+        human2.secondName = "Сергеевич";
+        human2.surname = "Пушкин";
 
-        //people.name = "Клеопатра";
-        //people.height = 152;
+        human3.name = "Владимир";
+        human3.surname = "Маяковский";
 
-        System.out.println(people.person() + " " + people.human());
+        People people1 = new People(human1,152);
+        People people2 = new People(human2,167);
+        People people3 = new People(human3,189);
+
+        AManWithAName aManWithAName1 = new AManWithAName(people1);
+        AManWithAName aManWithAName2 = new AManWithAName(people2);
+        AManWithAName aManWithAName3 = new AManWithAName(people3);
+
+        System.out.println(aManWithAName1);
+        System.out.println(aManWithAName2);
+        System.out.println(aManWithAName3);
 
     }
 }
