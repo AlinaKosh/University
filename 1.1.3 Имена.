@@ -3,22 +3,22 @@ public class Human {
     public String surname;
     public String secondName;
 
+    public class Human {
+    public String name;
+    public String surname;
+    public String secondName;
+
     @Override
     public String toString() {
         String res = "";
-        if (name!=null) return res + (name + " ");
-        if (surname!=null) return res + (surname + " ");
-        if (secondName!=null) return res + (secondName + " ");
+        if (name!=null)  res += (name + " ");
+        if (surname!=null) res += (surname + " ");
+        if (secondName!=null) res += (secondName + " ");
         return res;
     }
-
-    public String person(){
-        if (secondName==null) return name + " " + surname;
-        else if (surname != null && name != null) return surname + " " + name +" " + secondName;
-        else if (name==null && surname==null) return secondName;
-        return name;
-    }
+    
 }
+
 
 
 public class Main1 {
@@ -35,8 +35,8 @@ public class Main1 {
         human2.surname = "Frisky";
         human3.secondName = "Renatov";
 
-        System.out.println(human1.person());
-        System.out.println(human2.person());
-        System.out.println(human3.person());
+        System.out.println(human1);
+        System.out.println(human2);
+        System.out.println(human3);
     }
 }
