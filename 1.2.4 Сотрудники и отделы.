@@ -3,28 +3,29 @@ import java.util.Scanner;
 public class Main1 {
 
     public static void main(String[] args) {
-        Human human1 = new Human("Петров", "IT", "Козлов");
-        Human human2 = new Human("Козлов","IT","Козлов");
-        Human human3 = new Human("Сидоров","IT", "Козлов");
-        System.out.println(human1);
-        System.out.println(human2);
-        System.out.println(human3);
+    
+        Employee employee1 = new Employee("Петров", "IT", "Козлов");
+        Employee employee2 = new Employee("Козлов","IT","Козлов");
+        Employee employee3 = new Employee("Сидоров","IT", "Козлов");
+
+        System.out.println(employee1);
+        System.out.println(employee2);
+        System.out.println(employee3);
     }
 }
 
 
 //ДРУГОЙ КЛАСС
-public class Human {
+public class Employee {
     private String name;
     private String department;
     private String warden;
 
-    public Human(String name, String department, String warden) {
+    public Employee(String name, String department, String warden) {
         this.name = name;
         this.department = department;
         this.warden = warden;
     }
-
     @Override
     public String toString() {
         if (name.equals(warden)) return warden + " начальник отдела " + department;
