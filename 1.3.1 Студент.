@@ -1,27 +1,34 @@
 import java.util.Arrays;
 
-public class Employee {
+public class Students {
+    public String name;
+    public int[] marks;
 
-    private String name1;
-    private String name2;
-    private String name3;
-    private int[] marks;
+    public Students(String name, int... marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    @Override
+    public String toString() {
+        return "Имя: " + name + ", оценки " + Arrays.toString(marks) + ", ";
+    }
+}
+
+
+public class Main1 {
 
     public static void main(String[] args) {
-        Employee employee =  new Employee();
-
-        employee.marks = new int[]{3, 4, 5};
-        employee.name1 = "Вася";
-        System.out.println("Имя: " + employee.name1 + ", Оценки" + Arrays.toString(employee.marks));
-
-        employee.name2 = "Петя";
-        int[] marks1 = employee.marks;
-        marks1[0] = 5;
-        System.out.println("Имя: " + employee.name2 + ", Оценки" + Arrays.toString(marks1));
-
-        //я не знаю, как взять первоначальные оценки Пети, которые были не изменены
-        employee.name3 = "Андрей";
-        int[] marks2 = marks1;
-        System.out.println("Имя: " + employee.name3 + ", Оценки" + Arrays.toString(marks2));
+    
+    Students students1 = new Students("Вася",3,4,5);
+        Students students2 = new Students("Петя", students1.marks);
+        //никак не получается оставить предыдущие 3,4,5 и придумала сделать
+        // альтернативный вариант, но не уверенна, что именно так надо делать
+        int[] marksClone = students1.marks.clone();
+        Students students3 = new Students("Андрей", marksClone);
+        students1.marks[0] = 5;
+        System.out.println(students1);
+        System.out.println(students2);
+        System.out.println(students3);
     }
 }
