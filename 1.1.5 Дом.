@@ -7,10 +7,11 @@ public class Home {
 
     @Override
     public String toString() {
-        if (floors==1) return "Дом с " + floors + " этажом";
-        return "Дом с " + floors + " этажами";
+        String floor = floors % 10==1?" этажом":" этажами";
+        return "Дом с " + floors + floor;
     }
 }
+
 
 
 public class Main1 {
