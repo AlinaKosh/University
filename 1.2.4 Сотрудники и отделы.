@@ -4,9 +4,13 @@ public class Main1 {
 
     public static void main(String[] args) {
     
-        Employee employee1 = new Employee("Петров", "IT", "Козлов");
-        Employee employee2 = new Employee("Козлов","IT","Козлов");
-        Employee employee3 = new Employee("Сидоров","IT", "Козлов");
+        Deportament deportament = new Deportament("Продажи");
+
+        Employee employee1 = new Employee("Иванов", deportament);
+        Employee employee2 = new Employee("Петров", deportament);
+        Employee employee3 = new Employee("Сидоров", deportament);
+
+        deportament.boss = employee1;
 
         System.out.println(employee1);
         System.out.println(employee2);
@@ -15,20 +19,32 @@ public class Main1 {
 }
 
 
-//ДРУГОЙ КЛАСС
-public class Employee {
-    private String name;
-    private String department;
-    private String warden;
+public class Deportament {
+    public String name;
+    public Employee boss;
 
-    public Employee(String name, String department, String warden) {
-        this.name = name;
-        this.department = department;
-        this.warden = warden;
-    }
-    @Override
-    public String toString() {
-        if (name.equals(warden)) return warden + " начальник отдела " + department;
-        return name + " работает в отделе " + department + " начальник которого " + warden;
+    public Deportament(String deport) {
+        this.name = deport;
     }
 }
+public class Employee {
+    public String name;
+    public Deportament deportament;
+
+    public Employee(String name, Deportament deportament) {
+        this.name = name;
+        this.deportament = deportament;
+    }
+
+    @Override
+    public String toString() {
+        if (name.equals(deportament.boss.name)){
+            return deportament.boss.name + " является начальником отдела " + deportament.name;
+        }
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", deportament=" + deportament.name +
+                '}'+",биг босс абудаби это "+deportament.boss.name;
+    }
+}
+
