@@ -1,0 +1,47 @@
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Point point1 = new Point(2,3);
+        Point point2 = new Point(5,6);
+        Point point3 = new Point(9,0);
+
+        PoliLine poliLine1 = new PoliLine(point1, point2, point3);
+        System.out.println(poliLine1);
+      }
+ }
+ 
+ import java.util.Arrays;
+
+public class PoliLine {
+    Point[] points;
+
+    public PoliLine(Point... points) {
+        this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        String res = "Line: ";
+        for (Point point:points) {
+            res+=point+" ";
+        }
+        return res;
+    }
+}
+
+
+public class Point {
+    public int x;
+    public int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + x + ";" + y + "}";
+    }
+}
