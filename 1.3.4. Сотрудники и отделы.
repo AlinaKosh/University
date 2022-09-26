@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Department {
+
+    public String name;
+    List<Worker> workers;
+
+    public Department(String name) {
+        this.name = name;
+        workers = new ArrayList<>();
+    }
+}
+
+
+public class Worker {
+
+    public String name;
+    Department department;
+
+    public Worker(String name, Department department) {
+        this.name = name;
+        this.department = department;
+        department.workers.add(this);
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        res += name + " работает в " + department.name + " вместе с ";
+        for (Worker worker : department.workers) {
+            res += worker.name + ", ";
+        }
+        return res;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Department department = new Department("Продажи");
+        Worker worker1 = new Worker("Петров",department);
+        Worker worker2 = new Worker("Сидоров",department);
+        Worker worker3 = new Worker("Козлов",department);
+
+        System.out.println(worker1);
+   }
+}
