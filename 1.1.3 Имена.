@@ -1,9 +1,4 @@
-public class Human {
-    public String name;
-    public String surname;
-    public String secondName;
-
-    public class Human {
+public class Name {
     public String name;
     public String surname;
     public String secondName;
@@ -25,18 +20,18 @@ public class Main1 {
 
     public static void main(String[] args) {
 
-        Human human1 = new Human();
-        Human human2 = new Human();
-        Human human3 = new Human();
-        human1.name = "Alina";
-        human1.surname = "Kosh";
-        human1.secondName = "Den";
-        human2.name = "Mary";
-        human2.surname = "Frisky";
-        human3.secondName = "Renatov";
+        Name name1 = new Human();
+        Name name2 = new Human();
+        Name name3 = new Human();
+        name1.name = "Alina";
+        name1.surname = "Kosh";
+        name1.secondName = "Den";
+        name2.name = "Mary";
+        name2.surname = "Frisky";
+        name3.secondName = "Renatov";
 
-        System.out.println(human1);
-        System.out.println(human2);
-        System.out.println(human3);
+        System.out.println(name1);
+        System.out.println(name2);
+        System.out.println(name3);
     }
 }
