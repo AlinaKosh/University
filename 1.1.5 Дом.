@@ -17,9 +17,9 @@ public class Home {
 public class Main1 {
 
     public static void main(String[] args) {
-    Home home1 = new Home(1);
-        Home home2 = new Home(5);
-        Home home3 = new Home(23);
+        Home home1 = new Home(2);
+        Home home2 = new Home(35);
+        Home home3 = new Home(91);
         System.out.println(home1);
         System.out.println(home2);
         System.out.println(home3);
