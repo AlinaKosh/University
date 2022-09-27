@@ -1,8 +1,35 @@
-//ДРУГОЙ КЛАСС
-public class Human {
+public class Main1 {
+
+    public static void main(String[] args) {
+    Human human1 = new Human(new Names("Иван","Чудов"));
+        Human human2 = new Human(new Names("Петр","Чудов"), human1);
+        Human human3 = new Human(new Names("Борис"),human2);
+
+        System.out.println(human1);
+        System.out.println(human2);
+        System.out.println(human3);
+      }
+ }
+ 
+ public class Names {
     public String name;
-    public String surname;
     public String secondName;
+    public String surname;
+
+    public Names(String name) {
+        this.name = name;
+    }
+
+    public Names(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Names(String name, String secondName, String surname) {
+        this.name = name;
+        this.secondName = secondName;
+        this.surname = surname;
+    }
 
     @Override
     public String toString() {
@@ -12,61 +39,42 @@ public class Human {
         if (secondName!=null) res += (secondName + " ");
         return res;
     }
-
 }
 
-public class People {
-    public String name;
-    public int height;
-    public String secondName;
 
-    public People(Human name, int height) {
-        this.name = String.valueOf(name);
+public class Human {
+
+    Names names;
+    Human father;
+    int height;
+
+    public Human(Names names) {
+        this.names = names;
+    }
+
+    public Human(Names names, Human father) {
+        this.names = names;
+        this.father = father;
+        if (names.surname==null) names.surname = father.names.surname;
+        if (names.secondName==null) names.secondName = father.names.name + "ович";
+    }
+
+    public Human(Names names, int height) {
+        this.names = names;
         this.height = height;
     }
 
-    public People(Human name, String secondName) {
-        this.name = String.valueOf(name);
-        this.secondName = secondName;
-    }
-
-    public String addDad(){
-        if (secondName==null) return name;
-        return name + secondName + "ович";
+    public Human(Names names, Human father, int height) {
+        this.names = names;
+        this.father = father;
+        this.height = height;
+        if (names.surname==null) names.surname = father.names.surname;
+        if (names.secondName==null) names.secondName = father.names.name + "ович";
     }
 
     @Override
     public String toString() {
-        return name + ", рост: " + height;
+
+        return names + " " + height;
     }
 }
-
-
-public class Main1 {
-
-    public static void main(String[] args) {
-        
-        Human human1 = new Human();
-        Human human2 = new Human();
-        Human human3 = new Human();
-
-        human1.name = "Иван";
-        human1.surname = "Чудов";
-
-        human2.name = "Петр";
-        human2.surname = "Чудов";
-
-        human3.name = "Борис";
-        human3.surname = "Чудов";
-
-        People people1 = new People(human1,null);
-        People people2 = new People(human2,human1.name);
-        People people3 = new People(human3,human2.name);
-
-
-        System.out.println(people1.addDad());
-        System.out.println(people2.addDad());
-        System.out.println(people3.addDad());
-    }
-}
-
