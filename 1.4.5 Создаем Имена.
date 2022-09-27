@@ -1,0 +1,43 @@
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Names names1 = new Names("Клеопатра");
+        Names names2 = new Names("Александр","Сергеевич","Пушкин");
+        Names names3 = new Names("Христофор","Бонифатьевич");
+
+        System.out.println(names1);
+        System.out.println(names2);
+        System.out.println(names3);
+     }
+ }
+ 
+ 
+ public class Names {
+    private String name;
+    private String secondName;
+    private String surname;
+
+    public Names(String name) {
+        this.name = name;
+    }
+
+    public Names(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Names(String name, String secondName, String surname) {
+        this.name = name;
+        this.secondName = secondName;
+        this.surname = surname;
+    }
+    @Override
+    public String toString() {
+        String res = "";
+        if (name!=null)  res += (name + " ");
+        if (surname!=null) res += (surname + " ");
+        if (secondName!=null) res += (secondName + " ");
+        return res;
+    }
+}
