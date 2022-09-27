@@ -1,0 +1,80 @@
+public class Main1 {
+    public static void main(String[] args) {
+    
+        Human human4 = new Human(new Names("Лев"),170);
+        Human human5 = new Human(new Names("Сергей","Пушкин"),human4,168);
+        Human human6 = new Human(new Names("Александр"),human5,167);
+        System.out.println(human4);
+        System.out.println(human5);
+        System.out.println(human6);
+
+    }
+}
+
+public class Names {
+    public String name;
+    public String secondName;
+    public String surname;
+
+    public Names(String name) {
+        this.name = name;
+    }
+
+    public Names(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Names(String name, String secondName, String surname) {
+        this.name = name;
+        this.secondName = secondName;
+        this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        if (name!=null)  res += (name + " ");
+        if (surname!=null) res += (surname + " ");
+        if (secondName!=null) res += (secondName + " ");
+        return res;
+    }
+}
+
+
+public class Human {
+
+    Names names;
+    Human father;
+    int height;
+
+    public Human(Names names) {
+        this.names = names;
+    }
+
+    public Human(Names names, Human father) {
+        this.names = names;
+        this.father = father;
+        if (names.surname==null) names.surname = father.names.surname;
+        if (names.secondName==null) names.secondName = father.names.name + "ович";
+    }
+
+    public Human(Names names, int height) {
+        this.names = names;
+        this.height = height;
+    }
+
+    public Human(Names names, Human father, int height) {
+        this.names = names;
+        this.father = father;
+        this.height = height;
+        if (names.surname==null) names.surname = father.names.surname;
+        if (names.secondName==null) names.secondName = father.names.name + "ович";
+    }
+
+    @Override
+    public String toString() {
+
+        return names + " " + height;
+    }
+}
