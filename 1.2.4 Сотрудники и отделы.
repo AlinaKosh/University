@@ -41,10 +41,7 @@ public class Employee {
         if (name.equals(deportament.boss.name)){
             return deportament.boss.name + " является начальником отдела " + deportament.name;
         }
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", deportament=" + deportament.name +
-                '}'+",биг босс абудаби это "+deportament.boss.name;
+        return "Сотрудник по имени: " + name + "работает в депортаменте " + deportament.name + ", боссом явлется "+deportament.boss.name;
     }
 }
 
