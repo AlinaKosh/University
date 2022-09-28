@@ -1,0 +1,56 @@
+public class Fractions {
+    public int numerator;
+    public int denominator;
+
+    public Fractions(int numerator, int denominator) {
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
+
+    public String multiplication(Fractions fractions1, Fractions fractions2){
+        int numer = fractions1.numerator * fractions2.numerator;
+        int denumir = fractions1.denominator * fractions2.denominator;
+        return fractions1.numerator + "/" + fractions1.denominator + " * " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+    }
+
+    public String division(Fractions fractions1, Fractions fractions2){
+        int numer = fractions1.numerator * fractions2.denominator;
+        int denumir = fractions1.denominator * fractions2.numerator;
+        return fractions1.numerator + "/" + fractions1.denominator + " / " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+    }
+
+    public String sum(Fractions fractions1, Fractions fractions2){
+        int numer = (fractions1.numerator * fractions2.denominator) + (fractions2.numerator * fractions1.denominator);
+        int denumir = fractions1.denominator * fractions2.denominator;
+        return fractions1.numerator + "/" + fractions1.denominator + " + " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+    }
+
+    public String subtracting(Fractions fractions1, Fractions fractions2){
+        int numer = (fractions1.numerator * fractions2.denominator) - (fractions2.numerator * fractions1.denominator);
+        int denumir = fractions1.denominator * fractions2.denominator;
+        return fractions1.numerator + "/" + fractions1.denominator + " - " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+    }
+
+    @Override
+    public String toString() {
+        return numerator + "/" + denominator;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Fractions fractions1 = new Fractions(1,3);
+        Fractions fractions2 = new Fractions(2,3);
+        Fractions fractions3 = new Fractions(7,9);
+        Fractions fractions4 = new Fractions(6,7);
+        Fractions fractions5  =new Fractions(8,1);
+        System.out.println(fractions1.multiplication(fractions1,fractions2));
+        System.out.println(fractions1.division(fractions1,fractions2));
+        System.out.println(fractions3.sum(fractions3,fractions4));
+        System.out.println(fractions3.subtracting(fractions4,fractions3));
+        System.out.println(fractions1.multiplication(fractions1,fractions5));
+    }
+}
