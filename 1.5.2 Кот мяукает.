@@ -1,0 +1,38 @@
+public class Cat {
+
+    public String nameCat;
+
+    public Cat(String nameCat) {
+        this.nameCat = nameCat;
+    }
+
+    public String justSay(){
+        return nameCat + ": " + "Мяу";
+    }
+    public String countMew(int n){
+        String res = "";
+        if (n>1){
+            for (int i=0;i<n;i++){
+                res+="Мяу" + " ";
+            }
+        }
+        return nameCat + ": " + res;
+    }
+
+    @Override
+    public String toString() {
+        return nameCat;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Cat cat = new Cat("Барсик");
+        System.out.println(cat);
+        System.out.println(cat.justSay());
+        System.out.println(cat.countMew(3));
+    }
+}
