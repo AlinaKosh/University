@@ -1,0 +1,47 @@
+public class Time {
+    private int second;
+    private int hour;
+    private int minute;
+    public Time(int second) {
+        this.second = second;
+    }
+
+    public Time() {
+    }
+
+    public Time(int second, int hour, int minute) {
+        this.second = second;
+        this.hour = hour;
+        this.minute = minute;
+    }
+
+    public int timeHour(int sec){
+        return sec / 3600;
+    }
+    public int timeMinutes(int sec){
+        return sec/60;
+    }
+    public int timeSeconds(int sec){
+        return sec;
+    }
+
+    @Override
+    public String toString() {
+        if (hour!=0 && minute!=0 && second!=0) return hour + " часа, " + minute + " минут, " + second + " секунд ";
+        if (second / 3600 > 0 && second < 86400) return "0" + second / 3600 + ":" + ((second / 60)-(second / 3600)*60)  + ":" + (second - 60*((second / 3600)*60 + (second / 60)-((second / 3600)*60)));
+        else if (second > 86400) return "0" + ((second - 86400) / 3600) + ":" + ((second / 60)-(second / 3600)*60) + ":" + (second - 60*((second / 3600)*60 + (second / 60)-((second / 3600)*60)));
+        return "00:00:" + second;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Time time1 = new Time();
+        System.out.println(time1.timeHour(34056) + " " + time1.timeMinutes(4532) + " " + time1.timeSeconds(123));
+
+      
+    }
+}
