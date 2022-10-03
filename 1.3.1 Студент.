@@ -22,8 +22,6 @@ public class Main1 {
     
     Students students1 = new Students("Вася",3,4,5);
         Students students2 = new Students("Петя", students1.marks);
-        //никак не получается оставить предыдущие 3,4,5 и придумала сделать
-        // альтернативный вариант, но не уверенна, что именно так надо делать
         int[] marksClone = students1.marks.clone();
         Students students3 = new Students("Андрей", marksClone);
         students1.marks[0] = 5;
