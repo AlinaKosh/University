@@ -1,9 +1,9 @@
 public class Main1 {
     public static void main(String[] args) {
     
-        Human human4 = new Human(new Names("Лев"),170);
+        Human human4 = new Human("Лев",170);
         Human human5 = new Human(new Names("Сергей","Пушкин"),human4,168);
-        Human human6 = new Human(new Names("Александр"),human5,167);
+        Human human6 = new Human("Александр",human5,167);
         System.out.println(human4);
         System.out.println(human5);
         System.out.println(human6);
@@ -48,33 +48,33 @@ public class Human {
     Human father;
     int height;
 
-    public Human(Names names) {
-        this.names = names;
-    }
-
-    public Human(Names names, Human father) {
-        this.names = names;
-        this.father = father;
-        if (names.surname==null) names.surname = father.names.surname;
-        if (names.secondName==null) names.secondName = father.names.name + "ович";
-    }
-
-    public Human(Names names, int height) {
-        this.names = names;
-        this.height = height;
-    }
-
     public Human(Names names, Human father, int height) {
         this.names = names;
         this.father = father;
         this.height = height;
-        if (names.surname==null) names.surname = father.names.surname;
-        if (names.secondName==null) names.secondName = father.names.name + "ович";
+        if (father!=null) {
+            if (this.names.secondName==null && this.father.names.name!=null){
+                this.names.secondName=this.father.names.name;
+            }
+            if (this.names.surname==null && this.father.names.surname!=null){
+                this.names.surname=this.father.names.surname;
+            }
+        }
+    }
+
+    public Human(String name, int height){
+        this(new Names(name, null, null), null, height);
+    }
+
+    public Human(String name, Human father, int height){
+        this(new Names(name,null,null),father,height);
     }
 
     @Override
     public String toString() {
-
-        return names + " " + height;
+        if (names.surname!=null && father.names.name!=null){
+            return names.surname + " " + names.name + " " + height + " отец " + father.names.name;
+        }
+        else return names.name + " " + height;
     }
 }
