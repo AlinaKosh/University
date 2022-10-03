@@ -1,0 +1,47 @@
+import java.util.Arrays;
+
+public class Students {
+    public String name;
+    public int[] marks;
+
+    public Students(String name, int... marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public String topStudentOrNot() {
+
+        int sum = 0;
+        double res = 0.0;
+        if (marks.length == 0) return name + " " + "0";
+        else {
+            for (int m : marks) {
+                sum += m;
+            }
+            res += (double) sum / marks.length;
+        }
+        if (res > 4.85) return name + " " +  res + " Отличник";
+        else return name + " " + res + " Не отличник";
+    }
+
+    @Override
+    public String toString() {
+        if (marks == null) return "Имя: " + name + " без оценок.";
+        return "Имя: " + name + ", оценки " + Arrays.toString(marks) + ", ";
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        Students students1 = new Students("Вася",3,4,5,4);
+        Students students2 = new Students("Петя",5,5,5,5);
+        Students students3 = new Students("Колян");
+        System.out.println(students1.topStudentOrNot());
+        System.out.println(students2.topStudentOrNot());
+        System.out.println(students3.topStudentOrNot());
+
+
+    }
+}
