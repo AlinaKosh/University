@@ -2,6 +2,7 @@ public class Time {
     private int second;
     private int hour;
     private int minute;
+
     public Time(int second) {
         this.second = second;
     }
@@ -15,24 +16,30 @@ public class Time {
         this.minute = minute;
     }
 
-    public int timeHour(int sec){
+    public int timeHour(int sec) {
         return sec / 3600;
     }
-    public int timeMinutes(int sec){
-        return sec/60;
+
+    public int timeMinutes(int sec) {
+        return (sec % 3600) / 60;
     }
-    public int timeSeconds(int sec){
-        return sec;
+
+    public int timeSeconds(int sec) {
+        return sec % 60;
     }
 
     @Override
     public String toString() {
-        if (hour!=0 && minute!=0 && second!=0) return hour + " часа, " + minute + " минут, " + second + " секунд ";
-        if (second / 3600 > 0 && second < 86400) return "0" + second / 3600 + ":" + ((second / 60)-(second / 3600)*60)  + ":" + (second - 60*((second / 3600)*60 + (second / 60)-((second / 3600)*60)));
-        else if (second > 86400) return "0" + ((second - 86400) / 3600) + ":" + ((second / 60)-(second / 3600)*60) + ":" + (second - 60*((second / 3600)*60 + (second / 60)-((second / 3600)*60)));
+        if (hour != 0 && minute != 0 && second != 0)
+            return hour + " часа, " + minute + " минут, " + second + " секунд ";
+        if (second / 3600 > 0 && second < 86400)
+            return "0" + second / 3600 + ":" + ((second / 60) - (second / 3600) * 60) + ":" + (second - 60 * ((second / 3600) * 60 + (second / 60) - ((second / 3600) * 60)));
+        else if (second > 86400)
+            return "0" + ((second - 86400) / 3600) + ":" + ((second / 60) - (second / 3600) * 60) + ":" + (second - 60 * ((second / 3600) * 60 + (second / 60) - ((second / 3600) * 60)));
         return "00:00:" + second;
     }
 }
+
 
 
 public class Main1 {
