@@ -7,28 +7,32 @@ public class Fractions {
         this.denominator = denominator;
     }
 
-    public String multiplication(Fractions fractions2){
+    public Fractions multiplication(Fractions fractions2){
         int numer = this.numerator * fractions2.numerator;
         int denumir = this.denominator * fractions2.denominator;
-        return this.numerator + "/" + this.denominator + " * " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+        System.out.println(this.numerator + "/" + this.denominator + " * " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir);
+        return new Fractions(numer, denumir);
     }
 
-    public String division(Fractions fractions2){
+    public Fractions division(Fractions fractions2){
         int numer = this.numerator * fractions2.denominator;
         int denumir = this.denominator * fractions2.numerator;
-        return this.numerator + "/" + this.denominator + " / " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+        System.out.println(this.numerator + "/" + this.denominator + " / " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir);
+        return new Fractions(numer, denumir);
     }
 
-    public String sum(Fractions fractions2){
+    public Fractions sum(Fractions fractions2){
         int numer = (this.numerator * fractions2.denominator) + (fractions2.numerator * this.denominator);
         int denumir = this.denominator * fractions2.denominator;
-        return this.numerator + "/" + this.denominator + " + " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+        System.out.println(this.numerator + "/" + this.denominator + " + " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir);
+        return new Fractions(numer, denumir);
     }
 
-    public String subtracting(Fractions fractions2){
+    public Fractions subtracting(Fractions fractions2){
         int numer = (this.numerator * fractions2.denominator) - (fractions2.numerator * this.denominator);
         int denumir = this.denominator * fractions2.denominator;
-        return this.numerator + "/" + this.denominator + " - " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir;
+        System.out.println(this.numerator + "/" + this.denominator + " - " + fractions2.numerator + "/" + fractions2.denominator + " = " + numer + "/" + denumir);
+        return new Fractions(numer, denumir);
     }
 
     @Override
@@ -36,6 +40,7 @@ public class Fractions {
         return numerator + "/" + denominator;
     }
 }
+
 
 
 
@@ -47,11 +52,12 @@ public class Main1 {
         Fractions fractions2 = new Fractions(2,3);
         Fractions fractions3 = new Fractions(7,9);
         Fractions fractions4 = new Fractions(6,7);
-        Fractions fractions5  =new Fractions(8,1);
+        Fractions fractions5 = new Fractions(8,1);
         System.out.println(fractions1.subtracting(fractions2));
         System.out.println(fractions1.division(fractions2));
         System.out.println(fractions1.multiplication(fractions2));
         System.out.println(fractions3.sum(fractions4));
         System.out.println(fractions4.multiplication(fractions5));
+        System.out.println(fractions1.sum(fractions2).division(fractions3).subtracting(fractions5));
     }
 }
