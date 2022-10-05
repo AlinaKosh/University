@@ -8,11 +8,23 @@ public class Students {
         this.name = name;
         this.marks = marks;
     }
-
     public String topStudentOrNot() {
 
         int sum = 0;
         double res = 0.0;
+            for (int m : marks) {
+                sum += m;
+            }
+            res += (double) sum / marks.length;
+
+        if (res > 4.85) return name + " " + "Отличник";
+        else return name + " " + "Не отличник";
+
+    }
+
+    public String gradePointAverage(){
+        double res = 0.0;
+        int sum = 0;
         if (marks.length == 0) return name + " " + "0";
         else {
             for (int m : marks) {
@@ -20,8 +32,7 @@ public class Students {
             }
             res += (double) sum / marks.length;
         }
-        if (res > 4.85) return name + " " +  res + " Отличник";
-        else return name + " " + res + " Не отличник";
+        return ", Средний балл " + res;
     }
 
     @Override
@@ -35,12 +46,11 @@ public class Students {
 public class Main1 {
 
     public static void main(String[] args) {
+    
         Students students1 = new Students("Вася",3,4,5,4);
         Students students2 = new Students("Петя",5,5,5,5);
-        Students students3 = new Students("Колян");
-        System.out.println(students1.topStudentOrNot());
-        System.out.println(students2.topStudentOrNot());
-        System.out.println(students3.topStudentOrNot());
+        System.out.println(students1.topStudentOrNot() + students1.gradePointAverage());
+        System.out.println(students2.topStudentOrNot() + students2.gradePointAverage());
 
 
     }
