@@ -21,7 +21,7 @@ public class Department {
 public class Worker {
 
     public String name;
-    private Department department;
+    private final Department department;
     private Worker worker;
 
     public Worker(String name, Department department) {
