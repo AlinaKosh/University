@@ -1,0 +1,32 @@
+public class Home {
+    private int floors;
+
+    public Home(int floors) {
+        this.floors = floors;
+    }
+    
+
+    @Override
+    public String toString() {
+        if (this.floors<0) throw new IllegalCallerException("У дома не может отрицательное кол-во этажей");
+        String floor = floors % 10==1?" этажом":" этажами";
+        return "Дом с " + floors + floor;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+    Home home1 = new Home(2);
+        Home home2 = new Home(35);
+        Home home3 = new Home(91);
+        Home home4 = new Home(-5);
+
+        System.out.println(home1);
+        System.out.println(home2);
+        System.out.println(home3);
+        System.out.println(home4);
+     }
+   }
