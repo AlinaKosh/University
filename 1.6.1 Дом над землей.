@@ -1,5 +1,5 @@
 public class Home {
-    private int floors;
+    private final int floors;
 
     public Home(int floors) {
         this.floors = floors;
