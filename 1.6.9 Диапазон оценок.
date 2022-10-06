@@ -1,0 +1,73 @@
+import java.util.Arrays;
+
+public class Students {
+    public String name;
+    private int[] marks;
+
+    public Students(String name, int... marks) {
+        this.name = name;
+        for (int i = 0; i< marks.length; i++){
+            if (marks[i]<2 || marks[i]>5){
+                throw new IllegalArgumentException("Некорректно задана оценка");
+            }
+        }
+        this.marks = Arrays.copyOf(marks,marks.length);
+    }
+
+    public int[] getMarks() {
+        return Arrays.copyOf(marks, marks.length);
+    }
+
+    public String topStudentOrNot() {
+
+        int sum = 0;
+        double res = 0.0;
+            for (int m : marks) {
+                sum += m;
+            }
+            res += (double) sum / marks.length;
+
+        if (res > 4.85) return name + " " + "Отличник";
+        else return name + " " + "Не отличник";
+
+    }
+
+    public String gradePointAverage(){
+        double res = 0.0;
+        int sum = 0;
+        if (marks.length == 0) return name + " " + "0";
+        else {
+            for (int m : marks) {
+                sum += m;
+            }
+            res += (double) sum / marks.length;
+        }
+        return ", Средний балл " + res;
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        res+= "Ученик " + name + " имеет оценки ";
+        for (int mark : marks) {
+            res += mark + ", ";
+        }
+        return res;
+       
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Students students1 = new Students("Вова",3,4,5,2);
+        int[] grades = students1.getMarks();
+        grades[0] = 333;
+        System.out.println(students1);//проверяем, что оценку нельзя поменять (всё работает - оценка не меняется)
+        Students students2 = new Students("Петя", -2,5,3,8);
+        System.out.println(students2); //проверяем некорректность ввода оценок (всё работает - ошибка появляется)
+
+    }
+}
