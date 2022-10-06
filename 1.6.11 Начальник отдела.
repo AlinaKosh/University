@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Department {
+
+    public String name;
+    List<Worker> workers;
+    public Worker boss;
+
+
+    public Department(String name) {
+        this.name = name;
+        workers = new ArrayList<>();
+    }
+    public void setBoss(Worker boss){
+        this.boss = boss;
+    }
+}
+
+
+public class Worker {
+
+    public String name;
+    private Department department;
+    private Worker worker;
+
+    public Worker(String name, Department department) {
+        this.name = name;
+        this.department = department;
+        department.workers.add(this);
+    }
+
+
+    public String guarantee(Worker worker){
+
+        if (worker.department.boss.name.equals(department.boss.name)){
+            return "Босс " + department.boss.name + ", который работает в " + department.name + " вместе с " + worker.name;
+        }
+        else return department.boss.name + " не работает в отделе" + " вместе с " + worker.name;
+    }
+
+
+    @Override
+    public String toString() {
+        String res = "";
+        res += name + " работает в " + department.name + " вместе с ";
+        for (Worker worker : department.workers) {
+            res += worker.name + ", ";
+        }
+        return res + "боссом является " + department.boss.name;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+    
+        Department department1 = new Department("IT");
+        Worker worker1 = new Worker("Петров",department1);
+        Worker worker2 = new Worker("Сидоров",department1);
+        Worker worker3 = new Worker("Козлов",department1);
+        department1.setBoss(worker3);
+        Department department2 = new Department("Продажи");
+        Worker worker4 = new Worker("Иванов",department2);
+        Worker worker5 = new Worker("Ждунов",department2);
+        department2.setBoss(worker4);
+        System.out.println(worker2.guarantee(worker5));
+
+        //System.out.println(worker1);
+
+    }
+}
