@@ -1,0 +1,64 @@
+public class Gun {
+
+    private final int maxAmmo;
+    private int ammo;
+
+    public Gun(int maxAmmo) {
+        this.maxAmmo = maxAmmo;
+    }
+
+
+    public int getMaxAmmo() {
+        return maxAmmo;
+    }
+
+    public int getAmmo() {
+        return ammo;
+    }
+
+    public int load(int ammo){
+        if (ammo<0) {
+            throw new IllegalArgumentException("Вы положили отрицательное число патронов");
+        }
+        int res = 0;
+        int tmp = this.ammo+ammo;
+        if (tmp>maxAmmo){
+            res = tmp - maxAmmo;
+            tmp = maxAmmo;
+        }
+        this.ammo = tmp;
+        return res;
+    }
+
+    public int discharge(){
+        return this.ammo = 0;
+    }
+
+    public void shoot(){
+        if (ammo>0){
+            System.out.println("Bah!");
+            ammo--;
+        }
+        else System.out.println("Klac");
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        
+        Gun gun = new Gun(7);
+        gun.load(3);
+        for (int i = 0; i < 5; i++) {
+            gun.shoot();
+        }
+        gun.load(8);
+        for (int i = 0; i < 2; i++) {
+            gun.shoot();
+        }
+        gun.discharge();
+        gun.shoot();
+
+    }
+}
