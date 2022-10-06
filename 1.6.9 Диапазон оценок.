@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Students {
     public String name;
-    private int[] marks;
+   private final int[] marks;
 
     public Students(String name, int... marks) {
         this.name = name;
