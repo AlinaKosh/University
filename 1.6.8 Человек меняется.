@@ -9,11 +9,11 @@ public class Human {
         this.father = father;
         this.height = height;
         if (father!=null) {
-            if (this.names.secondName==null && this.father.names.name!=null){
-                this.names.secondName=this.father.names.name;
+            if (this.names.secondName==null && father.names.name!=null){
+                this.names.secondName=father.names.name;
             }
-            if (this.names.surname==null && this.father.names.surname!=null){
-                this.names.surname=this.father.names.surname;
+            if (this.names.surname==null && father.names.surname!=null){
+                this.names.surname=father.names.surname;
             }
         }
     }
@@ -54,6 +54,7 @@ public class Human {
         else return names.name + ", рост " + height;
     }
 }
+
 
 
 public class Names {
