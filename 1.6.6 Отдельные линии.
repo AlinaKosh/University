@@ -1,0 +1,89 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class NewLine {
+    private Point start;
+    private Point end;
+    public List<Point> pointsNewLine = new ArrayList<>();
+
+    public NewLine(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+    public NewLine(int x1, int y1, int x2, int y2){
+        this.start = new Point(x1, y1);
+        this.end = new Point(x2, y2);
+    }
+    public NewLine(Point... points){
+        this.pointsNewLine.addAll(Arrays.asList(points)); //Метод возвращает список фиксированного размера, поддерживаемый указанным массивом
+    //Поскольку массив не может быть структурно изменен, нельзя добавлять элементы в список или удалять элементы из него.
+    //Поскольку у нас принимается массив точек мы переделываем через Arrays
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+    }
+
+    public Point getStart() {
+        return start;
+    }
+
+    public Point getEnd() {
+        return end;
+    }
+
+    public void addPointsForCondition(Point...points){
+        pointsNewLine.addAll(Arrays.asList(points));
+    }
+    public double getLength(){
+        double length = 0.0;
+        for (int i = 0; i < pointsNewLine.size() - 1; i++) {
+            double sizeX = (pointsNewLine.get(i+1).x - pointsNewLine.get(i).x) * (pointsNewLine.get(i+1).x - pointsNewLine.get(i).x);
+            double sizeY = (pointsNewLine.get(i+1).y - pointsNewLine.get(i).y) * (pointsNewLine.get(i+1).y - pointsNewLine.get(i).y);
+            length += Math.sqrt(sizeX + sizeY);
+        }
+        return length;
+    }
+
+    @Override
+    public String toString() {
+        return "NewLine{" +
+                "pointsNewLine=" + pointsNewLine +
+                '}';
+    }
+}
+
+
+public class Point {
+    public int x;
+    public int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + x + ";" + y + "}";
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        
+        NewLine newLine1 = new NewLine(1,2,2,1);
+        System.out.println(newLine1.getStart());
+        System.out.println(newLine1.getEnd());
+        NewLine newLine2 = new NewLine(2,3,5,7);
+        newLine2.setStart(new Point(5,1));
+        System.out.println(newLine2.getStart());
+    }
+}
