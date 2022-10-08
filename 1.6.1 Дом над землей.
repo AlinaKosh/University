@@ -2,15 +2,18 @@ public class Home {
     private final int floors;
 
     public Home(int floors) {
+        if (floors<0) throw new IllegalCallerException("У дома не может отрицательное кол-во этажей");
         this.floors = floors;
     }
-    
+
+    public int getFloors() {
+        return floors;
+    }
 
     @Override
     public String toString() {
-        if (this.floors<0) throw new IllegalCallerException("У дома не может отрицательное кол-во этажей");
-        String floor = floors % 10==1?" этажом":" этажами";
-        return "Дом с " + floors + floor;
+
+        return "Дом с " + floors;
     }
 }
 
