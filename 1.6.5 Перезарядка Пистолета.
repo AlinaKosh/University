@@ -31,7 +31,9 @@ public class Gun {
     }
 
     public int discharge(){
-        return this.ammo = 0;
+        int tmp = this.ammo;
+        this.ammo=0;
+        return tmp;
     }
 
     public void shoot(){
@@ -42,6 +44,7 @@ public class Gun {
         else System.out.println("Klac");
     }
 }
+
 
 
 public class Main1 {
