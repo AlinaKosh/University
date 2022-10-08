@@ -5,11 +5,12 @@ import java.util.List;
 public class NewLine {
     private Point start;
     private Point end;
+
     public List<Point> pointsNewLine = new ArrayList<>();
 
     public NewLine(Point start, Point end) {
-        this.start = start;
-        this.end = end;
+        this.start = new Point(start.x, start.y);
+        this.end = new Point(end.x, end.y);
     }
     public NewLine(int x1, int y1, int x2, int y2){
         this.start = new Point(x1, y1);
@@ -27,6 +28,11 @@ public class NewLine {
 
     public void setEnd(Point end) {
         this.end = end;
+    }
+
+    public void setStart(int x, int y) {
+        this.start.x = x;
+        this.start.y = y;
     }
 
     public Point getStart() {
@@ -79,11 +85,17 @@ public class Main1 {
 
     public static void main(String[] args) {
         
-        NewLine newLine1 = new NewLine(1,2,2,1);
+        Point point1 = new Point(1,2);
+        Point point2 = new Point(2,1);
+        Point point3 = new Point(5,1);
+        NewLine newLine1 = new NewLine(point1,point2);
         System.out.println(newLine1.getStart());
         System.out.println(newLine1.getEnd());
-        NewLine newLine2 = new NewLine(2,3,5,7);
-        newLine2.setStart(new Point(5,1));
+        NewLine newLine2 = new NewLine(point1,point3);
+        newLine2.setStart(89, 45);
         System.out.println(newLine2.getStart());
+        System.out.println(newLine1.getStart());
+        System.out.println(newLine2.getEnd());
+        
     }
 }
