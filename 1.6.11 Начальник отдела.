@@ -13,15 +13,18 @@ public class Department {
         workers = new ArrayList<>();
     }
     public void setBoss(Worker boss){
-        this.boss = boss;
+        if (boss.department.name.equals(this.name)) this.boss = boss;
+        else throw new IllegalArgumentException("Не является начальником");
     }
+
 }
+
 
 
 public class Worker {
 
     public String name;
-    private final Department department;
+    public final Department department;
     private Worker worker;
 
     public Worker(String name, Department department) {
@@ -30,14 +33,6 @@ public class Worker {
         department.workers.add(this);
     }
 
-
-    public String guarantee(Worker worker){
-
-        if (worker.department.boss.name.equals(department.boss.name)){
-            return "Босс " + department.boss.name + ", который работает в " + department.name + " вместе с " + worker.name;
-        }
-        else return department.boss.name + " не работает в отделе" + " вместе с " + worker.name;
-    }
 
 
     @Override
@@ -52,6 +47,7 @@ public class Worker {
 }
 
 
+
 public class Main1 {
 
     public static void main(String[] args) {
@@ -62,12 +58,8 @@ public class Main1 {
         Worker worker3 = new Worker("Козлов",department1);
         department1.setBoss(worker3);
         Department department2 = new Department("Продажи");
-        Worker worker4 = new Worker("Иванов",department2);
+        Worker worker4 = new Worker("Иванов",department1);
         Worker worker5 = new Worker("Ждунов",department2);
         department2.setBoss(worker4);
-        System.out.println(worker2.guarantee(worker5));
-
-        //System.out.println(worker1);
-
     }
 }
