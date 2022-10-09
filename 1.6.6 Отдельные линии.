@@ -34,6 +34,11 @@ public class NewLine {
         this.start.x = x;
         this.start.y = y;
     }
+    
+    public void setEnd(int x, int y){
+        this.end.x = x;
+        this.end.y = y;
+    }
 
     public Point getStart() {
         return start;
@@ -63,6 +68,7 @@ public class NewLine {
                 '}';
     }
 }
+
 
 
 public class Point {
