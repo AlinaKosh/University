@@ -34,17 +34,6 @@ public class City {
         return new ArrayList<>(travel);
     }
 
-    /*
-    public void deleteTickets(Tickets... tickets){
-        for (Tickets ticket : tickets) {
-            travel.remove(ticket);
-        }
-
-    }
-
-     */
-
-
     @Override
     public String toString() {
         String res = "";
@@ -56,6 +45,7 @@ public class City {
         return res;
     }
 }
+
 
 
 
@@ -81,15 +71,11 @@ public class Main1 {
         City city5 = new City("E");
         City city6 = new City("F");
 
-        Tickets tickets = new Tickets(city3, 3);
-
         city1.tripForCity(new Tickets(city2,5),
                 new Tickets(city4,6),
                 new Tickets(city6,1));
-
         city2.tripForCity(new Tickets(city1,5),
-                tickets); //для примера
-
+                new Tickets(city3, 3));
         city3.tripForCity(new Tickets(city2,3),
                 new Tickets(city4,4));
         city4.tripForCity(new Tickets(city3,4),
@@ -105,10 +91,6 @@ public class Main1 {
         System.out.println(city4);
         System.out.println(city5);
         System.out.println(city6);
-
-        //city2.deleteTickets(tickets);
-
-        //System.out.println(city2);
 
         city6.addTickets(new Tickets(city5,2));
         
