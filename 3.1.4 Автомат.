@@ -1,0 +1,72 @@
+public class Gun extends Weapon{
+
+    public int maxAmmo;
+
+    public Gun(int ammo, int maxAmmo) {
+        super(ammo);
+        this.maxAmmo = maxAmmo;
+    }
+
+    public Gun() {
+    }
+
+
+    public int getMaxAmmo() {
+        return maxAmmo;
+    }
+
+
+    public void shoot(){
+        if (ammo>0){
+            System.out.println("Bah!");
+            ammo--;
+        }
+        else System.out.println("Klac");
+    }
+}
+
+
+public class GunChild extends Gun {
+
+    private final int speedShoot;
+
+    public GunChild() {
+        super();
+        speedShoot = 30;
+        maxAmmo = 30;
+    }
+
+    public GunChild(int maxAmmo) {
+        this.maxAmmo = maxAmmo;
+        this.speedShoot = maxAmmo / 2;
+    }
+
+    public GunChild(int maxAmmo, int speedShoot){
+        this.maxAmmo = maxAmmo;
+        this.speedShoot = speedShoot;
+    }
+
+
+    @Override
+    public void shoot() {
+
+        for (int i = 0; i < speedShoot; i++) {
+            if (ammo > 0) {
+                System.out.println("Bah!");
+                ammo--;
+            } else System.out.println("Klac");
+        }
+
+    }
+
+    public void shoot(int n) {
+        int countShoot = speedShoot * n;
+        for (int i = 0; i < countShoot; i++) {
+            if (ammo > 0) {
+                System.out.println("Bah!");
+                ammo--;
+            } else System.out.println("Klac");
+        }
+    }
+
+}
