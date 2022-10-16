@@ -1,0 +1,57 @@
+public abstract class Bird {
+    public abstract void sing();
+}
+
+
+public class Sparrow extends Bird{
+    @Override
+    public void sing() {
+        System.out.println("чырык");
+    }
+}
+
+
+public class Cuckoo extends Bird{
+    @Override
+    public void sing() {
+        String sing = "Ку-ку";
+        for (int i = 0; i < Math.random()*10; i++) {
+            System.out.println(sing);
+        }
+    }
+}
+
+
+import java.util.Arrays;
+
+public class Parrot extends Bird {
+    @Override
+    public void sing() {
+        String text = "qwertyuil";
+        char[] textCh = text.toCharArray();
+        for (int i = 0; i < textCh.length / 2; i++) {
+            int tmp1 = (int) (Math.random() * (textCh.length-1));
+            int tmp2 = (int) (Math.random() * (textCh.length-1));
+            char tmp3 = textCh[tmp1];
+            textCh[tmp1] = textCh[tmp2];
+            textCh[tmp2] = tmp3;
+        }
+        String str = String.valueOf(textCh);
+        System.out.println(str);
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        
+        Parrot parrot = new Parrot();
+        parrot.sing();
+        Sparrow sparrow = new Sparrow();
+        sparrow.sing();
+        Cuckoo cuckoo = new Cuckoo();
+        cuckoo.sing();
+
+    }
+}
