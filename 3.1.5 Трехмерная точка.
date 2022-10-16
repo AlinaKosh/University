@@ -1,0 +1,25 @@
+public class Point {
+    public int x;
+    public int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + x + ";" + y + "}";
+    }
+}
+
+
+public class PointChild extends Point {
+    public int z;
+
+    public PointChild(int x, int y, int z) {
+        super(x, y);
+        this.z = z;
+    }
+
+}
