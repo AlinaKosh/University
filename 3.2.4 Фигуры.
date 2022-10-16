@@ -1,0 +1,128 @@
+public abstract class Figures {
+
+    public abstract double square();
+
+}
+
+
+public class Circle extends Figures{
+
+    private Point point;
+    private int r;
+
+    public Circle(Point point, int r) {
+        this.point = point;
+        this.r = r;
+    }
+
+    @Override
+    public double square() {
+        return Math.PI*Math.pow(r,2);
+    }
+}
+
+
+public class Square extends Figures{
+    public int side;
+    private final Point point;
+
+    public Square(int side, Point point) {
+        if (side<=0) throw new IllegalArgumentException("Неправильно задана длина стороны");
+        this.side = side;
+        this.point = point;
+    }
+
+    public void setSide(int side) {
+        if (side<=0) throw new IllegalArgumentException("Неправильно задана длина стороны");
+        this.side = side;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    public final NewLine getBroken() {
+        Point point11 = new Point(this.point.x, this.point.y);
+        Point point2 = new Point(this.point.x + side, this.point.y);
+        Point point3 = new Point(this.point.x + side, side + this.point.y);
+        Point point4 = new Point(this.point.x, side + this.point.y);
+        return new NewLine(this.point, point2, point3, point4, point11);
+    }
+
+    @Override
+    public double square() {
+        return Math.pow(side,2);
+    }
+}
+
+
+
+public class Rectangle extends Square{
+
+    private int side2;
+
+    public Rectangle(int side1, int side2, Point point) {
+        super(side1, point);
+        this.side2 = side2;
+    }
+
+    @Override
+    public double square() {
+        return side * side2;
+    }
+
+}
+
+
+
+public class Line {
+    public Point start;
+    public Point end;
+
+    public Line(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public double distance() {
+        return Math.sqrt((end.x - start.x) * (end.x - start.x) + (end.y - start.y) * (end.y - start.y));
+    }
+
+    public static double distance(Point point1, Point point2){
+        return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "start=" + start +
+                ", end=" + end +
+                '}';
+    }
+}
+
+
+
+
+public class Triangle extends Figures {
+
+    private Point point1, point2, point3;
+
+    public Triangle(Point point1, Point point2, Point point3) {
+        this.point1 = point1;
+        this.point2 = point2;
+        this.point3 = point3;
+    }
+
+    @Override
+    public double square() {
+
+        double side1 = Line.distance(point2, point1);
+        double side2 = Line.distance(point3, point2);
+        double side3 = Line.distance(point3, point1);
+
+        double polPerimetr = (side1 + side2 + side3) / 2;
+
+        return Math.sqrt(polPerimetr * (polPerimetr - side1) * (polPerimetr - side2) * (polPerimetr - side3));
+    }
+}
