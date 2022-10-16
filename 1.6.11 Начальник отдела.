@@ -41,12 +41,11 @@ public class Department {
 
 
 
-
 public class Worker {
 
     public String name;
     private Department department;
-    
+
 
     public Worker(String name, Department department) {
         this.name = name;
@@ -62,8 +61,8 @@ public class Worker {
         if (this.department.getBoss() == this){
             this.department.setBoss(null);
         }
-        this.department.getWorkers().remove(this);
-        department.getWorkers().add(this);
+        this.department.fire(this);
+        department.addWorker(this);
         this.department = department;
     }
 
@@ -77,7 +76,6 @@ public class Worker {
         return res + "боссом является " + department.getBoss().name;
     }
 }
-
 
 
 
