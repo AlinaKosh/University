@@ -1,25 +1,27 @@
 public class Names {
-    public String name;
+    public final String name;
     public String secondName;
     public String surname;
 
-    public Names(String name) {
-        if ((name == null) || (name.equals(""))) throw new IllegalArgumentException("Не задано имя");
+    public Names(String name, String surname, String secondName) {
+        int count = 0;
+        if (name == null || name.equals("")) count += 1;
+        if (surname == null || surname.equals("")) count += 1;
+        if (secondName == null || secondName.equals("")) count += 1;
+        if (count == 3) throw new IllegalArgumentException("Не хватает параметра");
         this.name = name;
+        this.surname = surname;
+        this.secondName = secondName;
     }
 
     public Names(String name, String surname) {
-        this(name);
-        if (surname == null || surname.equals("")) throw new IllegalArgumentException("Не заданы имя и фамилия");
-        this.surname = surname;
+        this(name, surname, null);
     }
 
-    public Names(String name, String surname, String secondName) {
-        this(name, surname);
-        if ((secondName==null) || (secondName.equals("")))
-            throw new IllegalArgumentException("Не задано отчество");
-        this.secondName = secondName;
+    public Names(String name) {
+        this(name, null, null);
     }
+
 
     public String getName() {
         return name;
@@ -42,6 +44,7 @@ public class Names {
         return res;
     }
 }
+
 
 
 
