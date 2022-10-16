@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class PoliLine {
+    public List<Point> points = new ArrayList<>();
+
+    public PoliLine(Point... points) {
+        this.points = Arrays.asList(points);
+    }
+
+    public PoliLine() {
+
+    }
+
+    public double getLength() {
+        double length = 0.0;
+        for (int i = 0; i < points.size() - 1; i++) {
+            double sizeX = (points.get(i + 1).x - points.get(i).x) * (points.get(i + 1).x - points.get(i).x);
+            double sizeY = (points.get(i + 1).y - points.get(i).y) * (points.get(i + 1).y - points.get(i).y);
+            length += Math.sqrt(sizeX + sizeY);
+        }
+        return length;
+    }
+
+    @Override
+    public String toString() {
+        String res = "Line: ";
+        for (Point point : points) {
+            res += point + " ";
+        }
+        return res;
+    }
+}
+
+
+public class PoliLineChild extends PoliLine{
+
+    public PoliLineChild(Point...points){
+        super(points);
+    }
+
+
+    @Override
+    public double getLength(){
+        double length = 0.0;
+        for (int i = 0; i < points.size() - 1; i++) {
+            double sizeX = (points.get(i + 1).x - points.get(i).x) * (points.get(i + 1).x - points.get(i).x);
+            double sizeY = (points.get(i + 1).y - points.get(i).y) * (points.get(i + 1).y - points.get(i).y);
+            length += Math.sqrt(sizeX + sizeY);
+        }
+        double sizeX = (points.get(points.size()-1).x - points.get(0).x) * (points.get(points.size() - 1).x - points.get(0).x);
+        double sizeY = (points.get(points.size()-1).y - points.get(0).y) * (points.get(points.size()-1).y - points.get(0).y);
+        length += Math.sqrt(sizeX + sizeY);
+        return length;
+    }
+}
+
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        
+        PoliLineChild child1 = new PoliLineChild(new Point(1,3), new Point(5,2),new Point(7,8));
+        System.out.println(child1.getLength());
+        PoliLine poliLine = new PoliLine(new Point(1,3),new Point(5,2), new Point(7,8));
+        System.out.println(poliLine.getLength());
+
+
+    }
+}
