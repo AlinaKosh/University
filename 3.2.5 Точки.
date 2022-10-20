@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Point {
+    public int x;
+    public int y;
+
+    public Point(){
+
+    }
+    private List<Property> props = new ArrayList<>();
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public List<Property> getProps() {
+        return props;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + x + ";" + y + "}";
+    }
+}
+
+
+public class Property {
+
+    private String name;
+    private Object object;
+    private Time time;
+
+    public Property(String name, Object...object) {
+        this.name = name;
+        this.object = object;
+    }
+
+    public Property(String name, Time time) {
+        this.name = name;
+        this.time = time;
+    }
+
+    public String getName1() {
+        return name;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+}
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        Point point1 = new Point();
+        point1.getProps().add(new Property("x", 3));
+        point1.getProps().add(new Property("color", "red"));
+        Point point2 = new Point();
+        point2.getProps().add(new Property("x,y,z", 4, 2, 5));
+        point2.getProps().add(new Property("time", new Time(11, 00)));
+        Point point3 = new Point();
+        point3.getProps().add(new Property("x,y",7,7));
+        point3.getProps().add(new Property("color","yellow"));
+        point2.getProps().add(new Property("time", new Time(15,35)));
+
+    }
+}
