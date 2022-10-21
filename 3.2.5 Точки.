@@ -30,27 +30,73 @@ public class Property {
 
     private String name;
     private Object object;
-    private Time time;
 
-    public Property(String name, Object...object) {
+    public Property(String name, Object object) {
         this.name = name;
         this.object = object;
     }
 
-    public Property(String name, Time time) {
-        this.name = name;
-        this.time = time;
-    }
 
     public String getName1() {
         return name;
     }
 
-    public Time getTime() {
-        return time;
+    public Object getObject() {
+        return object;
+    }
+}
+
+
+public class Time {
+    private int second;
+    private int hour;
+    private int minute;
+
+    public Time(int second) {
+        if (second >= 86400) throw new IllegalArgumentException("Слишком большое значение");
+        this.second = second;
     }
 
+    public Time(int hour, int minute) {
+        this.hour = hour;
+        this.minute = minute;
+    }
+
+    public Time(int second, int hour, int minute) {
+        if (second >= 86400 || hour >= 24 || minute >= 1440) second = 0;
+        this.second = second;
+        this.hour = hour;
+        this.minute = minute;
+    }
+
+    public int timeHour(int sec) {
+        return sec / 3600;
+    }
+
+    public int timeMinutes(int sec) {
+        return (sec % 3600) / 60;
+    }
+
+    public int timeSeconds(int sec) {
+        return sec % 60;
+    }
+
+    public String time() {
+        return this.minute + ":" + this.second;
+    }
+
+    @Override
+    public String toString() {
+        if (hour != 0 && minute != 0 && second != 0)
+            return hour + " часа, " + minute + " минут, " + second + " секунд ";
+        if (second / 3600 > 0 && second < 86400)
+            return "0" + second / 3600 + ":" + ((second / 60) - (second / 3600) * 60) + ":" + (second - 60 * ((second / 3600) * 60 + (second / 60) - ((second / 3600) * 60)));
+        else if (second > 86400)
+            return "0" + ((second - 86400) / 3600) + ":" + ((second / 60) - (second / 3600) * 60) + ":" + (second - 60 * ((second / 3600) * 60 + (second / 60) - ((second / 3600) * 60)));
+        return "00:00:" + second;
+    }
 }
+
 
 
 public class Main {
@@ -58,15 +104,30 @@ public class Main {
     public static void main(String[] args) {
         
         Point point1 = new Point();
-        point1.getProps().add(new Property("x", 3));
-        point1.getProps().add(new Property("color", "red"));
+        point1.getProps().add(new Property("X - ", 3));
+        point1.getProps().add(new Property("color - ", "red"));
         Point point2 = new Point();
-        point2.getProps().add(new Property("x,y,z", 4, 2, 5));
-        point2.getProps().add(new Property("time", new Time(11, 00)));
+        point2.getProps().add(new Property("X - ",4));
+        point2.getProps().add(new Property("Y - ",2));
+        point2.getProps().add(new Property("Z - ",5));
+        point2.getProps().add(new Property("time - ",new Time(39600)));
         Point point3 = new Point();
-        point3.getProps().add(new Property("x,y",7,7));
-        point3.getProps().add(new Property("color","yellow"));
-        point2.getProps().add(new Property("time", new Time(15,35)));
+        point3.getProps().add(new Property("X - ",7));
+        point3.getProps().add(new Property("Y - ",7));
+        point3.getProps().add(new Property("time - ",new Time(56100)));
+        point3.getProps().add(new Property("color - ","yellow"));
+        for (int i = 0; i < point1.getProps().size(); i++) {
+            System.out.print(point1.getProps().get(i).getName1());
+            System.out.println(point1.getProps().get(i).getObject());
+        }
+        for (int i = 0; i < point2.getProps().size(); i++) {
+            System.out.print(point2.getProps().get(i).getName1());
+            System.out.println(point2.getProps().get(i).getObject());
+        }
+        for (int i = 0; i < point3.getProps().size(); i++) {
+            System.out.print(point3.getProps().get(i).getName1());
+            System.out.println(point3.getProps().get(i).getObject());
+        }
 
     }
 }
