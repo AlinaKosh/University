@@ -18,10 +18,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
     
-        SpecialClassForSquare.figuresSquare(new Circle(new Point(1,1), 3), new Circle(new Point(4,6), 7));
-        SpecialClassForSquare.figuresSquare(new Rectangle(3,4), new Rectangle(5,3));
-        SpecialClassForSquare.figuresSquare(new Triangle(new Point(2, 3), new Point(6, 5), new Point(4, 5)));
-        SpecialClassForSquare.figuresSquare(new Square(4, new Point(1, 2)));
+        System.out.println(SpecialClassForSquare.figuresSquare(new Circle(new Point(1, 1), 3), new Circle(new Point(4, 6), 7)));
+        System.out.println(SpecialClassForSquare.figuresSquare(new Rectangle(3, 4), new Rectangle(5, 3)));
+        System.out.println(SpecialClassForSquare.figuresSquare(new Triangle(new Point(2, 3), new Point(6, 5), new Point(4, 5))));
+        System.out.println(SpecialClassForSquare.figuresSquare(new Square(4, new Point(1, 2))));
         
     }
  }
