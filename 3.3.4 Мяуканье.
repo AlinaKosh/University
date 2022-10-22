@@ -1,0 +1,53 @@
+public interface MewAble {
+    public void justSay();
+}
+
+
+
+public class SpecialClassForCat {
+    public static void mewIrrator(MewAble... mewAble) {
+        for (MewAble m : mewAble) {
+            m.justSay();
+        }
+    }
+}
+
+
+
+public class Cat implements MewAble{
+
+    public String nameCat;
+
+    public Cat(String nameCat) {
+        this.nameCat = nameCat;
+    }
+
+    public void justSay(){
+        System.out.println(nameCat + ": " + "Мяу");
+    }
+    public void countMew(int n){
+        String res = "";
+        if (n>1){
+            for (int i=0;i<n;i++){
+                res+="Мяу" + " ";
+            }
+        }
+        System.out.println(nameCat + ": " + res);
+    }
+
+    @Override
+    public String toString() {
+        return nameCat;
+    }
+}
+
+
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        SpecialClassForCat.mewIrrator(new Cat("Rut"), new Cat("Tod"));
+        
+    }
+}
