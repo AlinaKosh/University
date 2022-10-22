@@ -1,0 +1,97 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class City {
+
+    public String name;
+    private List<Tickets> travel = new ArrayList<>();
+
+    public City(String name) {
+        this.name = name;
+    }
+
+    public void tripForCity(Tickets... tickets){
+        this.travel = List.of(tickets);
+    }
+
+    public void addTickets(Tickets tickets){
+        for (Tickets value : travel) {
+            if (value.city.name.equals(tickets.city.name)) {
+                throw new IllegalArgumentException("Одинаковый город!");
+            }
+        }
+        travel.add(tickets);
+    }
+
+    public City (String name, Tickets... tickets){
+        for (Tickets ticket : tickets) {
+            addTickets(ticket);
+        }
+    }
+
+    public List<Tickets> getTravel(){
+        return new ArrayList<>(travel);
+    }
+
+
+    @Override
+    public String toString() {
+        String res = "";
+        res+="Из города " + name + " можно поехать в ";
+
+        for (Tickets tkt:travel) {
+            res+=tkt.city.name +" за " + tkt.cost + ", ";
+        }
+        return res;
+    }
+}
+
+
+
+public class CityChild extends City{
+
+    public CityChild(String name) {
+        super(name);
+    }
+
+    public CityChild(String name, Tickets... tickets) {
+        super(name, tickets);
+    }
+
+    @Override
+    public void addTickets(Tickets tickets){
+        for (Tickets value : getTravel()) {
+            if (value.city==(tickets.city)) {
+                return;
+            }
+        }
+        getTravel().add(tickets);
+        //super.addTickets(tickets);
+        tickets.city.addTickets(new Tickets(this, tickets.cost));
+    }
+}
+
+
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        
+        CityChild cityChildA = new CityChild("A");
+        CityChild cityChildD = new CityChild("D");
+
+        City cityB = new City("B");
+        City cityC = new City("C");
+        City cityE = new City("E");
+
+        cityChildA.addTickets(new Tickets(cityB, 3));
+        cityChildA.addTickets(new Tickets(cityC, 5));
+        cityChildD.addTickets(new Tickets(cityB, 2));
+        cityChildD.addTickets(new Tickets(cityE, 8));
+
+        cityB.addTickets(new Tickets(cityE, 9));
+        cityE.addTickets(new Tickets(cityC, 6));
+        
+   }
+}
