@@ -1,0 +1,81 @@
+public interface LengAble {
+    public double getLength();
+}
+
+
+public class SpecialClassForLength {
+
+    public static double Lang(LengAble... lengAbles) {
+        double count = 0;
+        for (LengAble l : lengAbles) {
+            count += l.getLength();
+        }
+        return count;
+    }
+    
+}
+
+public class Line implements LengAble{
+    public Point start;
+    public Point end;
+
+    public Line(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public double getLength() {
+        return Math.sqrt((end.x - start.x) * (end.x - start.x) + (end.y - start.y) * (end.y - start.y));
+    }
+
+    public static double distance(Point point1, Point point2){
+        return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "start=" + start +
+                ", end=" + end +
+                '}';
+    }
+}
+
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class PoliLine implements LengAble{
+    public List<Point> points = new ArrayList<>();
+
+    public PoliLine(Point... points) {
+        this.points = Arrays.asList(points);
+    }
+
+    public PoliLine() {
+
+    }
+
+    public double getLength() {
+        double length = 0.0;
+        for (int i = 0; i < points.size() - 1; i++) {
+            double sizeX = (points.get(i + 1).x - points.get(i).x) * (points.get(i + 1).x - points.get(i).x);
+            double sizeY = (points.get(i + 1).y - points.get(i).y) * (points.get(i + 1).y - points.get(i).y);
+            length += Math.sqrt(sizeX + sizeY);
+        }
+        return length;
+    }
+
+    @Override
+    public String toString() {
+        String res = "Line: ";
+        for (Point point : points) {
+            res += point + " ";
+        }
+        return res;
+    }
+}
+
+
