@@ -4,10 +4,14 @@ public interface BirdSing {
 
 
 public class SpecialClassForBird{
-    public static void manySing(String name) throws Exception {
-        BirdSing birdSing = (BirdSing) Class.forName(name).newInstance();
+    public static void manySing(BirdSing birdSing){
         birdSing.sing();
     }
+    
+    //второй способ решения без использования интерфейса, просто через полиморфизм вот так:
+    public static void justSign(Bird bird){
+        bird.sing();
+     }
 }
 
 
@@ -16,9 +20,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         
-        SpecialClassForBird.manySing("Sparrow");
-        SpecialClassForBird.manySing("Cuckoo");
-        SpecialClassForBird.manySing("Parrot");
+        SpecialClassForBird.manySing(new Cuckoo());
+        SpecialClassForBird.manySing(new Sparrow());
+        SpecialClassForBird.manySing(new Parrot());
+        
+        //второй способ
+        SpecialClassForBird.justSign(new Cuckoo());
+        SpecialClassForBird.justSign(new Sparrow());
+        SpecialClassForBird.justSign(new Parrot());
 
     }
 }
