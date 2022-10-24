@@ -1,0 +1,117 @@
+public interface Brokenable {
+    PoliLine getBroken();
+}
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SpecialClassForBroken {
+    public static PoliLine getPolygonalChain(Brokenable...brokenable){
+        List<Point> pointList = new ArrayList<>();
+        for (Brokenable br:brokenable) {
+            pointList.addAll(br.getBroken().points);
+        }
+        return new PoliLine((Point[]) pointList.toArray());
+    }
+}
+
+
+
+public class Line implements Lengable, Brokenable{
+    public Point start;
+    public Point end;
+
+    public Line(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public double getLength() {
+        return Math.sqrt((end.x - start.x) * (end.x - start.x) + (end.y - start.y) * (end.y - start.y));
+    }
+
+    public static double distance(Point point1, Point point2){
+        return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "start=" + start +
+                ", end=" + end +
+                '}';
+    }
+
+    @Override
+    public PoliLine getBroken() {
+        return new PoliLine(start,end);
+    }
+}
+
+
+
+public class Triangle implements Figuresable, Brokenable{
+
+    private final Point point1;
+    private Point point2;
+    private Point point3;
+
+    public Triangle(Point point1, Point point2, Point point3) {
+        this.point1 = point1;
+        this.point2 = point2;
+        this.point3 = point3;
+    }
+
+    @Override
+    public double square() {
+
+        double side1 = Line.distance(point2, point1);
+        double side2 = Line.distance(point3, point2);
+        double side3 = Line.distance(point3, point1);
+
+        double polPerimetr = (side1 + side2 + side3) / 2;
+
+        return Math.sqrt(polPerimetr * (polPerimetr - side1) * (polPerimetr - side2) * (polPerimetr - side3));
+    }
+
+    @Override
+    public PoliLine getBroken() {
+        return new PoliLineChild(point1,point2,point3);
+    }
+}
+
+
+
+public class Square implements Figuresable, Brokenable{
+    public int side;
+    private Point point;
+
+    public Square(int side, Point point) {
+        if (side<=0) throw new IllegalArgumentException("Неправильно задана длина стороны");
+        this.side = side;
+        this.point = point;
+    }
+
+    public void setSide(int side) {
+        if (side<=0) throw new IllegalArgumentException("Неправильно задана длина стороны");
+        this.side = side;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    public PoliLine getBroken() {
+        Point point11 = new Point(this.point.x, this.point.y);
+        Point point2 = new Point(this.point.x + side, this.point.y);
+        Point point3 = new Point(this.point.x + side, side + this.point.y);
+        Point point4 = new Point(this.point.x, side + this.point.y);
+        return new PoliLine(this.point, point2, point3, point4, point11);
+    }
+
+    @Override
+    public double square() {
+        return Math.pow(side,2);
+    }
+}
