@@ -1,4 +1,46 @@
-public class Square implements FiguresAble{
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class PoliLine implements Lengable, Brokenable{
+    public List<Point> points = new ArrayList<>();
+
+    public PoliLine(Point... points) {
+        this.points = Arrays.asList(points);
+    }
+
+    public PoliLine() {
+
+    }
+
+    public double getLength() {
+        double length = 0.0;
+        for (int i = 0; i < points.size() - 1; i++) {
+            double sizeX = (points.get(i + 1).x - points.get(i).x) * (points.get(i + 1).x - points.get(i).x);
+            double sizeY = (points.get(i + 1).y - points.get(i).y) * (points.get(i + 1).y - points.get(i).y);
+            length += Math.sqrt(sizeX + sizeY);
+        }
+        return length;
+    }
+
+    @Override
+    public String toString() {
+        String res = "Line: ";
+        for (Point point : points) {
+            res += point + " ";
+        }
+        return res;
+    }
+
+    @Override
+    public PoliLine getBroken() {
+        return new PoliLine((Point) points);
+    }
+}
+
+
+
+public class Square implements Figuresable, Brokenable{
     public int side;
     private Point point;
 
@@ -17,88 +59,16 @@ public class Square implements FiguresAble{
         return side;
     }
 
-    public final NewLine getBroken() {
+    public PoliLine getBroken() {
         Point point11 = new Point(this.point.x, this.point.y);
         Point point2 = new Point(this.point.x + side, this.point.y);
         Point point3 = new Point(this.point.x + side, side + this.point.y);
         Point point4 = new Point(this.point.x, side + this.point.y);
-        return new NewLine(this.point, point2, point3, point4, point11);
+        return new PoliLine(this.point, point2, point3, point4, point11);
     }
 
     @Override
     public double square() {
         return Math.pow(side,2);
-    }
-}
-
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class NewLine {
-    private Point start;
-    private Point end;
-
-    public List<Point> pointsNewLine = new ArrayList<>();
-
-    public NewLine(Point start, Point end) {
-        this.start = new Point(start.x, start.y);
-        this.end = new Point(end.x, end.y);
-    }
-    public NewLine(int x1, int y1, int x2, int y2){
-        this.start = new Point(x1, y1);
-        this.end = new Point(x2, y2);
-    }
-    public NewLine(Point... points){
-        this.pointsNewLine.addAll(Arrays.asList(points)); //Метод возвращает список фиксированного размера, поддерживаемый указанным массивом
-    //Поскольку массив не может быть структурно изменен, нельзя добавлять элементы в список или удалять элементы из него.
-    //Поскольку у нас принимается массив точек мы переделываем через Arrays
-    }
-
-    public void setStart(Point start) {
-        this.start = start;
-    }
-
-    public void setEnd(Point end) {
-        this.end = end;
-    }
-
-    public void setStart(int x, int y) {
-        this.start.x = x;
-        this.start.y = y;
-    }
-
-    public void setEnd(int x, int y){
-        this.end.x = x;
-        this.end.y = y;
-    }
-
-    public Point getStart() {
-        return start;
-    }
-
-    public Point getEnd() {
-        return end;
-    }
-
-    public void addPointsForCondition(Point...points){
-        pointsNewLine.addAll(Arrays.asList(points));
-    }
-    public double getLength(){
-        double length = 0.0;
-        for (int i = 0; i < pointsNewLine.size() - 1; i++) {
-            double sizeX = (pointsNewLine.get(i+1).x - pointsNewLine.get(i).x) * (pointsNewLine.get(i+1).x - pointsNewLine.get(i).x);
-            double sizeY = (pointsNewLine.get(i+1).y - pointsNewLine.get(i).y) * (pointsNewLine.get(i+1).y - pointsNewLine.get(i).y);
-            length += Math.sqrt(sizeX + sizeY);
-        }
-        return length;
-    }
-
-    @Override
-    public String toString() {
-        return "NewLine{" +
-                "pointsNewLine=" + pointsNewLine +
-                '}';
     }
 }
