@@ -1,0 +1,63 @@
+import java.util.Objects;
+
+public class Line implements Lengable, Brokenable{
+    public Point start;
+    public Point end;
+
+    public Line(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public double getLength() {
+        return Math.sqrt((end.getX() - start.getX()) * (end.getX() - start.getX()) + (end.getY() - start.getY()) * (end.getY() - start.getY()));
+    }
+
+    public static double distance(Point point1, Point point2){
+        return Math.sqrt(Math.pow(point2.getX() - point1.getX(), 2) + Math.pow(point2.getY() - point1.getY(), 2));
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "start=" + start +
+                ", end=" + end +
+                '}';
+    }
+
+    @Override
+    public PoliLine getBroken() {
+        return new PoliLine(start,end);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(start, line.start) && Objects.equals(end, line.end);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end);
+    }
+}
+
+
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Line line1 = new Line(new Point(1, 1), new Point(6, 7));
+        Line line2 = new Line(new Point(1, 1), new Point(6, 7));
+        Line line3 = new Line(new Point(3, 8), new Point(1, 5));
+        System.out.println(line1.equals(line2));
+        System.out.println(line2.equals(line1));
+        System.out.println(line1.equals(line3));
+        System.out.println(line1.hashCode() + " " + line2.hashCode() + " " + line3.hashCode());
+
+    }
+
+}
