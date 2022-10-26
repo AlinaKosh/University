@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public class Point {
+    public int x;
+    public int y;
+
+    public Point(){
+
+    }
+    private List<Property> props = new ArrayList<>();
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public List<Property> getProps() {
+        return props;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + x + ";" + y + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return x == point.x && y == point.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+}
+
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Point point1 = new Point(1, 1);
+        Point point2 = new Point(1, 1);
+        Point point3 = new Point(3, 4);
+        System.out.println(point1.equals(point2));
+        System.out.println(point2.equals(point1));
+        System.out.println(point1.equals(point3));
+        System.out.println(point1.hashCode() + " " + point2.hashCode() + " " + point3.hashCode());
+
+    }
+
+}
