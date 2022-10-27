@@ -1,0 +1,115 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+public class PoliLine implements Lengable, Brokenable{
+    private Point start;
+    private Point end;
+
+    public List<Point> points = new ArrayList<>();
+
+    public PoliLine(Point start, Point end) {
+        this.start = new Point(start.getX(), start.getY());
+        this.end = new Point(end.getX(), end.getY());
+    }
+    public PoliLine(int x1, int y1, int x2, int y2){
+        this.start = new Point(x1, y1);
+        this.end = new Point(x2, y2);
+    }
+    public PoliLine(Point... points){
+        this.points.addAll(Arrays.asList(points)); //Метод возвращает список фиксированного размера, поддерживаемый указанным массивом
+        //Поскольку массив не может быть структурно изменен, нельзя добавлять элементы в список или удалять элементы из него.
+        //Поскольку у нас принимается массив точек мы переделываем через Arrays
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+    }
+
+    public void setStart(int x, int y) {
+        this.start.x = x;
+        this.start.y = y;
+    }
+
+    public void setEnd(int x, int y){
+        this.end.x = x;
+        this.end.y = y;
+    }
+
+    public Point getStart() {
+        return start;
+    }
+
+    public Point getEnd() {
+        return end;
+    }
+
+    public void addPointsForCondition(Point...points){
+        this.points.addAll(Arrays.asList(points));
+    }
+
+
+    public double getLength() {
+        double length = 0.0;
+        for (int i = 0; i < points.size() - 1; i++) {
+            double sizeX = (points.get(i + 1).getX() - points.get(i).getX()) * (points.get(i + 1).getX() - points.get(i).getX());
+            double sizeY = (points.get(i + 1).getY() - points.get(i).getY()) * (points.get(i + 1).getY() - points.get(i).getY());
+            length += Math.sqrt(sizeX + sizeY);
+        }
+        return length;
+    }
+
+    @Override
+    public String toString() {
+        String res = "Line: ";
+        for (Point point : points) {
+            res += point + " ";
+        }
+        return res;
+    }
+
+    @Override
+    public PoliLine getBroken() {
+        return new PoliLine((Point) points);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PoliLine poliLine = (PoliLine) o;
+        if (points.size()!=poliLine.points.size()) return false;
+        for (int i =0;i<points.size();i++){
+            if(!points.get(i).equals(poliLine.points.get(i))) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end);
+    }
+}
+
+
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        PoliLine poliLine1 = new PoliLine(new Point(6, 2), new Point(1, 7), new Point(8, 3));
+        PoliLine poliLine2 = new PoliLine(new Point(6, 2), new Point(1, 7), new Point(8, 3));
+        PoliLine poliLine3 = new PoliLine(new Point(1, 1), new Point(7, 4), new Point(9, 0));
+        System.out.println(poliLine1.equals(poliLine2));
+        System.out.println(poliLine2.equals(poliLine1));
+        System.out.println(poliLine3.equals(poliLine1));
+        System.out.println(poliLine1.hashCode() + " " + poliLine2.hashCode() + " " + poliLine3.hashCode());
+        
+    }
+
+}
