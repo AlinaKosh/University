@@ -1,0 +1,18 @@
+import java.awt.Point;
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        ru.kosheleva.geometry.Point point1 = new ru.kosheleva.geometry.Point(2,3);
+        Point point2 = new Point(1,9);
+        System.out.println(point1);
+        System.out.println(point2);
+
+    }
+
+}
+
+//РЕЗУЛЬТАТ ЗАПУСКА:
+{2;3}
+java.awt.Point[x=1,y=9]
