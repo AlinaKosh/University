@@ -1,0 +1,20 @@
+package ru.kosheleva.calculating;
+
+public class SpecialClassForPow {
+    public static int powNumbers(String x, String y){
+        return (int) Math.pow(Integer.parseInt(x),Integer.parseInt(y));
+    }
+}
+
+
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+    
+        System.out.println(SpecialClassForPow.powNumbers("3","3"));
+        System.out.println(SpecialClassForPow.powNumbers("2","5"));
+        
+    }
+
+}
