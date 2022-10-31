@@ -1,0 +1,28 @@
+package ru.kosheleva.calculating;
+
+import java.math.BigInteger;
+
+public class SpecialClassForSum {
+
+    public static double sum(Number...numbers){
+        double sum = 0.0;
+        for (Number items : numbers) {
+            sum += items.doubleValue();
+        }
+        return sum;
+    }
+
+
+}
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        System.out.println(SpecialClassForSum.sum(7,new Fractions(11,3),3.21, new BigInteger("12345678912345678912")));
+
+
+    }
+
+}
