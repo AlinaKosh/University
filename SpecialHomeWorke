@@ -1,0 +1,31 @@
+Нужно нпасать такой методк оторый бы принимал либо класс Line, либо класс PoliLine, где есть метод по подсчёту длины (getLength), а также этот метод 
+должен принимать стороку и находить её длину и складывать её вместе с длинами Line и PoliLine
+
+package ru.kosheleva.geometry;
+
+import ru.kosheleva.geometry.Lengable;
+
+import java.lang.reflect.Method;
+
+public class SpecialClassForLength {
+
+    
+// Method Предоставляет информацию об одном методе класса или интерфейса и доступ к нему.(Рефлексия)
+    public static double getLength(Object... objects) {
+        double length = 0.0;
+        for (Object object : objects) {
+            Method[] methods = object.getClass().getMethods();
+            for (Method method : methods) {
+                if (method.getName().equals("getLength")) {
+                    if (object.getClass().getName().equals("java.lang.String")) {
+                        length += object.toString().length();
+                    } else {
+                        length += ((Lengable) object).getLength();
+                    }
+                }
+            }
+        }
+        return length;
+    }
+
+}
