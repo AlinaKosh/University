@@ -1,0 +1,83 @@
+package ru.kosheleva.department;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Department {
+
+    public String name;
+    ArrayList<Worker> workers;
+    Worker boss;
+
+
+    public Department(String name) {
+        this.name = name;
+        workers = new ArrayList<>();
+    }
+
+    public Worker getBoss() {
+        return boss;
+    }
+
+    public ArrayList<Worker> getWorkers() {
+        return new ArrayList<>(workers);
+    }
+
+    public void fire(Worker work){
+        workers.remove(work);
+        work.setNewDepartment(null);
+    }
+
+    public void addWorker(Worker newWorker){
+        workers.add(newWorker);
+        newWorker.setNewDepartment(this);
+    }
+
+    public void setBoss(Worker newBoss){
+        newBoss.getDepartment().fire(newBoss);
+        this.addWorker(newBoss);
+        boss = newBoss;
+    }
+
+}
+
+
+package ru.kosheleva.department;
+
+import java.util.ArrayList;
+
+public class Worker {
+
+    String name;
+    Department department;
+
+
+    public Worker(String name, Department department) {
+        this.name = name;
+        this.department = department;
+        department.getWorkers().add(this);
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setNewDepartment(Department department) {
+        if (this.department.getBoss() == this){
+            this.department.setBoss(null);
+        }
+        this.department.fire(this);
+        department.addWorker(this);
+        this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        res += name + " работает в " + department.name + " вместе с ";
+        for (Worker worker : department.getWorkers()) {
+            res += worker.name + ", ";
+        }
+        return res + "боссом является " + department.getBoss().name;
+    }
+}
