@@ -51,10 +51,12 @@ public class Line implements Lengable, Brokenable, Cloneable {
 
     @Override
     public Line clone() throws CloneNotSupportedException {
-        return (Line) super.clone();
+        Line line = (Line) super.clone();
+        line.start = new Point(start.x, start.y);
+        line.end = new Point(end.x, end.y);
+        return line;
     }
 }
-
 
 
 public class Main {
