@@ -1,0 +1,66 @@
+Нужно написать такой метод, который бы принимал 3D точку (PointChild, где уже реализована z), в размере 2х 3D. И чтобы программа выводила:
+sout(p3d1)//123
+sout(p3d2)//123
+sout(p3d1==p3d2)//true
+(Подробная информация находится в тетрадке по Java (лекционная тетрад))
+
+
+
+package ru.kosheleva.geometry;
+
+public class SpecialClassForPointChild {
+    public static void foo(PointChild p3d1, PointChild p3d2){
+        System.out.println(p3d1);
+        System.out.println(p3d2);
+        System.out.println(p3d1==p3d2);
+    }
+}
+
+
+
+
+package ru.kosheleva.geometry;
+
+import ru.kosheleva.geometry.Point;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PointChild extends Point {
+    public int z;
+    public static final List<PointChild> listPoint3d = new ArrayList<>();
+
+    private PointChild(int x, int y, int z) {
+        super(x, y);
+        this.z = z;
+    }
+    //Важный метод
+    public static PointChild new3DPoint(int x, int y, int z) {
+
+        PointChild pointChild = new PointChild(x, y, z);
+
+        if (listPoint3d.contains(pointChild)) {
+            int indx = listPoint3d.indexOf(pointChild);
+            pointChild = listPoint3d.get(indx);
+        } else listPoint3d.add(pointChild);
+        return pointChild;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PointChild pointChild = (PointChild) o;
+        return x == pointChild.x && y == pointChild.y && z == pointChild.z;
+    }
+
+    @Override
+    public String toString() {
+        return x + " " + y + " " + z + " ";
+    }
+}
+
+
+В main:
+SpecialClassForPointChild.foo(PointChild.new3DPoint(1,2,3), PointChild.new3DPoint(1,2,3));
