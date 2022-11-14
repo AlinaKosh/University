@@ -1,7 +1,22 @@
 //Copy - это что-то типа Cloneable, я написала Copy для других задач, нужно использовать Cloneable для переопределения Object clone()
 
 
+package ru.kosheleva.main;
+
+public interface Copy extends Cloneable{
+    Copy clone();
+}
+
+
+
 package ru.kosheleva.geometry;
+
+import ru.kosheleva.main.Copy;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 
 import ru.kosheleva.main.Copy;
 
@@ -13,9 +28,10 @@ public class Point implements Copy {
     protected int x;
     protected int y;
 
-    public Point(){
+    public Point() {
 
     }
+
     private List<Property> props = new ArrayList<>();
 
     public Point(int x, int y) {
@@ -63,9 +79,16 @@ public class Point implements Copy {
 
     @Override
     public Point clone() {
-        return new Point(x,y);
+        try {
+            Point point = (Point) super.clone();
+            return point;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 }
+
 
 
 public class Main {
