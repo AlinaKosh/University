@@ -1,0 +1,146 @@
+//Написать такой метод, который бы заставил все линии и фигуры двигаться(перемещаться по x и y)
+
+//реализуем интерефейс для перемещения
+package ru.kosheleva.geometry;
+
+public interface Moveable {
+    void move(int x, int y);
+}
+
+
+//главный метод-обёртка, который хранит наши классы и их перемещения 
+
+package ru.kosheleva.geometry;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GroupMove  {
+    public List<Moveable> listMove = new ArrayList<>();
+
+    public void moveElement(){
+        for (Moveable moveable:listMove) {
+            moveable.move(2,2);
+            System.out.println(moveable);
+        }
+
+    }
+}
+
+
+
+//несколько классов с возможностю перемещаться 
+
+public class Line implements Moveable {
+    public Point start;
+    public Point end;
+
+
+    public Line(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+    
+    @Override
+    public void move(int x, int y) {
+        this.start.x+=x;
+        this.start.y+=y;
+        this.end.x+=x;
+        this.end.y+=y;
+    }
+    @Override
+    public String toString() {
+        return "Line{" +
+                "start=" + start +
+                ", end=" + end +
+                '}';
+    }
+}
+
+
+
+public class Triangle implements Moveable {
+
+    private final Point point1;
+    private Point point2;
+    private Point point3;
+
+    public Triangle(Point point1, Point point2, Point point3) {
+        this.point1 = point1;
+        this.point2 = point2;
+        this.point3 = point3;
+    }
+    @Override
+    public void move(int x, int y) {
+        this.point1.x+=x;
+        this.point1.y+=y;
+        this.point2.x+=x;
+        this.point2.y+=y;
+        this.point3.x+=x;
+        this.point3.y+=y;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "point1=" + point1 +
+                ", point2=" + point2 +
+                ", point3=" + point3 +
+                '}';
+    }
+}
+
+
+
+public class PoliLine implements Moveable {
+    private Point start;
+    private Point end;
+
+    public List<Point> points = new ArrayList<>();
+
+    public PoliLine(Point start, Point end) {
+        this.start = new Point(start.getX(), start.getY());
+        this.end = new Point(end.getX(), end.getY());
+    }
+
+    public PoliLine(int x1, int y1, int x2, int y2) {
+        this.start = new Point(x1, y1);
+        this.end = new Point(x2, y2);
+    }
+    
+    @Override
+    public void move(int x, int y) {
+        this.start.x+=x;
+        this.start.y+=y;
+        this.end.x+=x;
+        this.end.y+=y;
+    }
+
+    @Override
+    public String toString() {
+        return "PoliLine{" +
+                "start=" + start +
+                ", end=" + end +
+                '}';
+    }
+}
+
+
+
+public class Main {
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+    
+        Line line = new Line(new Point(3,4), new Point(5,6));
+        Triangle triangle = new Triangle(new Point(1,1), new Point(2,2), new Point(3,3));
+        PoliLine poliLine = new PoliLine(new Point(7,7), new Point(0,0));
+        GroupMove groupMove = new GroupMove();
+        groupMove.listMove.add(line);
+        groupMove.listMove.add(triangle);
+        groupMove.listMove.add(poliLine);
+        groupMove.moveElement();
+
+    }
+
+}
