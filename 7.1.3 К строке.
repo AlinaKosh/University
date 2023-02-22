@@ -1,0 +1,63 @@
+package toString;
+
+public class A extends Entity{
+    public String s = "hello";
+    public int x = 42;
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+}
+
+
+
+
+package toString;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
+
+public class B extends A {
+    public String text = "B";
+
+
+    @Override
+    public String toString() {
+
+        return super.toString();
+    }
+
+
+}
+
+
+
+package toString;
+
+import java.lang.reflect.Field;
+
+public class Entity {
+
+    @Override
+    public String toString() {
+        Class<?> cls = this.getClass();
+        Field[] fields = cls.getFields();
+        String s = "";
+        for (Field field : fields) {
+            try {
+                s += field.getName() + " = " + field.get(this) + "; ";
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return "{" + s + "}";
+    }
+}
+
+
+
+main(){
+  B b = new B();
+  System.out.println(b);
+}
