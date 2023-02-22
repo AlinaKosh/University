@@ -1,0 +1,62 @@
+package cache;
+
+public interface Powerable {
+    double pow();
+}
+
+
+
+package cache;
+
+public class Power implements Powerable{
+    double x;
+    double y;
+
+    public Power(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public double pow(){
+        System.out.println("Cache");
+        return Math.pow(x,y);
+    }
+}
+
+
+
+package cache;
+
+public class PowerProxy implements Powerable {
+    Power power;
+    double x;
+    double y;
+    double cache;
+
+    public PowerProxy(Power power) {
+        this.power = power;
+        this.x = power.x;
+        this.y = power.y;
+        this.cache = power.pow();
+    }
+
+    @Override
+    public double pow() {
+        if (x!=power.x || y!=power.y){
+            x = power.x;
+            y = power.y;
+            cache = power.pow();
+        }
+        return cache;
+    }
+}
+
+
+
+main(){
+  Power power = new Power(2,3);
+        PowerProxy powerProxy = new PowerProxy(power);
+        callPower(powerProxy);
+        callPower(powerProxy);
+        callPower(powerProxy);
+}
