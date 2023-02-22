@@ -1,0 +1,38 @@
+package firstTask;
+
+public class A extends ParentA{
+
+    private String name1;
+    public int x;
+    private int y;
+    public String name2;
+
+    public A(){}
+    public A(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    private void method1(){
+        System.out.println("Me");
+    }
+
+    public void method2(){
+        System.out.println("Dasha");
+    }
+}
+
+
+
+
+public class ParentA {
+    public String str;
+    private int number;
+}
+
+
+
+
+public static void main(String[] args){
+  System.out.println(fieldCollection(new A()));
+}
