@@ -1,0 +1,78 @@
+package line;
+
+public class Point {
+    public int x;
+    public int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+}
+
+
+
+
+
+package line;
+
+public class Line{
+    private Point start;
+    private Point end;
+
+    public Line(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public Point getStart() {
+        return start;
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
+    public Point getEnd() {
+        return end;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+    }
+}
+
+
+
+main(){
+  line(new Line(new Point(1,2), new Point(4,5)), new Line(new Point(3,6), new Point(7,9)));
+}
+
+//Метод в main
+public static void line(Line line1, Line line2) throws NoSuchFieldException, IllegalAccessException {
+        Class<?> cl1 = line1.getClass();
+        Class<?> cl2 = line2.getClass();
+        Field field1 = cl1.getDeclaredField("start");
+        Field field2 = cl2.getDeclaredField("end");
+        field1.setAccessible(true);
+        field2.setAccessible(true);
+        field2.set(line2, field1.get(line1));
+        System.out.println(field1.get(line1));
+        System.out.println(field2.get(line2));
+    }
