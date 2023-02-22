@@ -36,3 +36,31 @@ public class ParentA {
 public static void main(String[] args){
   System.out.println(fieldCollection(new A()));
 }
+
+//метод в main
+public static List<String> fieldCollection(Object o){
+        /*
+        Class cl = o.getClass();
+        Field[] field1 = cl.getDeclaredFields();
+        Field[] field2 = cl.getFields();
+
+        List<Field> list = new ArrayList<>();
+        Collections.addAll(list,field1);
+        Collections.addAll(list, field2);
+
+        return list;
+
+         */
+
+        Class<?> cl = o.getClass();
+        List<String> list = new ArrayList<>();
+
+        while (cl!=null){
+            list.addAll(
+                    Arrays.stream(cl.getDeclaredFields())
+                            .map(x->x.getName())
+                            .collect(Collectors.toList()));
+            cl = cl.getSuperclass();
+        }
+        return list;
+    }
